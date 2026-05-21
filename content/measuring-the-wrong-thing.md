@@ -2,116 +2,79 @@
 
 ---
 
-## The Briefing
+## You're Measuring the Wrong Thing. And That's Why Your SaaS Migration Is Already Failing. 
 
-Your project management office declared success. The cutover weekend ran clean. Zero data loss. The new platform is live. Tickets are closed. The implementation partner has invoiced. The steering committee slides show green.
+After managing complex SaaS migrations across industries, I've watched well-run technical projects quietly die six months after go-live. The data was clean. The timeline held. The steering committee signed off.
 
-Six months later, adoption is at 34%. Workarounds are endemic. The sales team has rebuilt its pipeline in a spreadsheet. The CS org is still running manual follow-up cadences outside the system. Three VPs are demanding a rollback.
+And then nobody used the system. And the client churned after 9 months go-live. The client decided to migrate to another system, again.
 
-This is not a technology failure. It is a measurement failure — and it is the most predictable, most expensive, and most consistently underestimated failure mode in enterprise SaaS deployment.
-
----
-
-## What "Go-Live" Actually Measures
-
-Go-live is a technical milestone. It confirms that:
-
-- Data was migrated with acceptable fidelity
-- APIs are live and authenticated
-- User accounts are provisioned
-- The platform responds within SLA parameters
-- Integration endpoints are active
-
-None of these metrics measure whether the system is being used. None of them measure whether the system has replaced the old behavior — the spreadsheets, the email threads, the shadow CRMs, the tribal knowledge codified in personal Notion databases.
-
-Technical readiness is a necessary condition. It is not a sufficient condition.
-
-The failure to distinguish between these two states is where nine-figure SaaS investments go to die.
+This is the failure mode nobody talks about, because it happens after the project closes, after the invoices are paid, and after the implementation team has moved on.
 
 ---
 
-## The Adoption Gap: A Structural Problem
+## Two types of failure. Only one gets attention.
 
-Enterprise SaaS migrations operate on a fundamental asymmetry. The implementation phase — scoping, configuration, data migration, integration, UAT — is intensely managed, staffed, documented, and reviewed. It has a budget, a timeline, a RACI matrix, and a war room.
+The first failure is visible: data doesn't migrate cleanly. Wrong field mapping, broken relationships, corrupted records. It's painful, but it's solvable. You have a clear north star — the destination system should faithfully reflect the source. Teams know how to fix this.
 
-The post-go-live phase is handed to the business.
+The second failure is invisible until it's too late: users don't adopt the destination system. The migration completed. The product is live. Nobody logs in.
 
-This handover is the fracture point. What looks like an organizational readiness problem is actually a structural design failure baked into how implementation projects are scoped and contracted.
-
-Three mechanisms produce the adoption gap:
-
-**1. Workflow inversion without workflow redesign.**  
-New systems impose new interaction patterns. If the old CRM required clicking through five screens to log a call, and the new CRM requires a structured data entry form that surfaces to revenue forecasting, the interaction cost feels higher to the end user — even though the downstream business value is substantially greater. Without deliberate process redesign and embedded coaching, users will route around the friction and preserve old behavior.
-
-**2. Permission structures that encode the old org.**  
-Configuration of roles and permissions during implementation is almost always modeled on the current state of the organization. But a SaaS migration is typically triggered by a desire to change how the organization operates. When the new system's permission model faithfully reproduces the old power structure, it preserves exactly what leadership wanted to disrupt. The ghost of the old org lives in the data model.
-
-**3. Reporting that is built for the vendor demo, not for operator decision-making.**  
-Default dashboards in enterprise SaaS platforms are designed to be legible to buyers during the evaluation process. They surface vanity metrics — records created, emails sent, meetings logged. Operators need lagging indicators tied to business outcomes: pipeline conversion by stage, time-to-resolution by segment, churn correlation to engagement score. These dashboards do not exist out of the box. Building them is post-go-live work. When that work is not scoped, operators fly blind.
+Here's the uncomfortable question that second failure forces: *if users weren't going to use the system anyway, what exactly did you migrate?*
 
 ---
 
-## The Metrics That Should Have Been Measured
+## The goal was never project completion.
 
-A robust post-go-live operating model tracks three layers simultaneously:
+Project closure is not the finish line. It's the starting gun.
 
-**Layer 1 — System Engagement (Weekly)**
-- Daily Active Users / Monthly Active Users ratio by function
-- Module abandonment rate (sessions where core workflows are initiated but not completed)
-- Data field completion rate on critical objects (Opportunity, Account, Case)
+A SaaS migration is the foundation on which CSMs and AMs will build account growth, drive renewal, and expand usage. If users don't adopt the product, that foundation is worthless — regardless of how clean the data is or how green the RAG status was at handover.
 
-**Layer 2 — Workflow Displacement (Biweekly)**
-- Shadow system inventory: are the spreadsheets still live?
-- Email volume for processes that should now be in-platform
-- Manual exception rate: what percentage of process steps require human override?
-
-**Layer 3 — Business Outcome Correlation (Monthly)**
-- Revenue forecast accuracy vs. pre-migration baseline
-- Support resolution time by tier
-- Customer health score variance correlated to CSM platform usage depth
-
-Most organizations measure Layer 1 inconsistently and never formalize Layers 2 or 3. The result is a reporting posture that can tell you how many logins occurred but cannot tell you whether the $4M implementation produced any operational leverage.
+Hence, User adoption is the north star. Everything else is scaffolding. Once you accept this, the entire logic of how you scope and run a migration changes.
 
 ---
 
-## What Rigorous Operators Do Differently
+## Why most migrations are scoped wrong from the start.
 
-The implementations that achieve genuine adoption share a common operating discipline that is applied before go-live, not after.
+The standard project flow looks like this:
 
-**They define "done" as a behavioral milestone, not a technical one.**  
-The project charter specifies what user behavior will look like at 30, 60, and 90 days post-go-live. These are contractual commitments, not aspirational targets.
+*[Visual: linear flow — Analyze Source System → Define Scope → Implement → Close]*
 
-**They instrument the shadow systems.**  
-Before cutover, they audit every parallel system — every spreadsheet, every shared inbox, every Airtable base — and establish a deprecation schedule with named owners and hard deadlines.
+This flow has a fatal assumption embedded in it: that the source system is the truth about what users need.
 
-**They embed operational reviewers in the configuration phase.**  
-The people who will run the system post-go-live are present in every configuration decision, not just UAT. This surfaces the friction points before they are baked into production.
+It isn't. It's the truth about what users *settled for*.
 
-**They treat the first 90 days as a second implementation.**  
-Hypercare is not a hotline. It is a structured, sprint-based operating cadence: weekly data quality reviews, biweekly workflow audits, monthly outcome reviews with executive sponsorship.
+Before defining any migration scope, you need answers to questions the source system cannot give you:
 
----
+- Which features do users actually use — and which have been ignored for years?
+- What do users want to do that the source system never let them do?
+- Where does this system sit in their daily workflow — and is it central, peripheral, or actively worked around?
 
-## The Executive Accountability Gap
+Looking at the source system gives you half the story. The other half lives in the habits, workarounds, and unspoken frustrations of the people who will determine whether this migration succeeds or fails.
 
-There is one final variable that consistently predicts adoption success or failure, and it is not technical: executive behavior.
-
-When the executive sponsor stops attending post-go-live reviews after the first month, the message transmitted to the organization is unambiguous. The system is not a strategic priority. Workarounds are tolerated. The migration was a compliance exercise.
-
-When the executive sponsor asks, in every QBR, for the Layer 2 and Layer 3 metrics — and makes clear that these numbers determine resourcing decisions — the adoption curve accelerates measurably.
-
-The system does not drive adoption. Accountability structures do.
+*[Visual: same flow, but with a gap marked between "Analyze Source System" and "Define Scope" — labeled: "This is where migrations are won or lost"]*
 
 ---
+## The four questions that determine scope.
+Before a single field is mapped or a migration script is written, I structure every engagement around four questions:
 
-## Closing Position
+**1. What does "useful" actually mean for these users?**
+After years of running migrations and coaching implementation PMs, the answers cluster around the same things: retrieving data on demand, generating reports instantly, inputting and editing records without friction, and trusting that changes are logged and reversible. If the destination system doesn't deliver on these, adoption will stall — regardless of feature parity.
 
-Technical migrations fail post-go-live because organizations measure the wrong things at the wrong time with the wrong accountability structures. The go-live milestone is a gate, not a destination.
+**2. How does this system fit into how users actually work?**
+Daily operations. Weekly rhythms. Monthly reporting cycles. The system either fits naturally into these workflows or it creates new ones. Creating new workflows for users is a change management program, not a migration project. Treat it accordingly.
 
-The ghost in the machine is not a bug in the code. It is the absence of a disciplined operating model on the other side of the cutover weekend.
+**3. What do users actually need — including what they don't know they need?**
+There are three layers here: what users know they need, what they think they need but don't, and what they need but haven't articulated. Surfacing that third layer is where experienced business analysts earn their fee. Skipping this conversation produces a scope that looks comprehensive and misses what matters.
 
-Build that model before you open the champagne.
+**4. What is the honest gap — and what's the plan for it?**
+I've seen requirements lists exceed 200 rows for clients running a four-year-old product with frequent releases. There will always be gaps. The question is whether you're transparent about them. Overpromising at scoping to close a deal is a short-term play that destroys long-term relationships. A well-managed gap analysis, paired with a credible product roadmap for unmet needs, is what turns a migration project into a trusted partnership.
 
 ---
+## What a migration actually is?
+By the time you've answered those four questions, something has shifted. You're no longer copying a system. You're redesigning the relationship between users and a tool that's supposed to make their work better.
+
+That's not a data migration. It's an adoption architecture project.
+
+The teams that treat it as one consistently deliver migrations that stick. The teams that don't are still debugging adoption problems six months after go-live — wondering why the data was perfect and the project still failed.
+
 
 *Antoine Nguyen is a Director of Professional Services with 10+ years of enterprise SaaS implementation experience across APAC and EMEA markets. This piece is part of an ongoing series on operational rigor in complex system migrations.*
