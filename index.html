@@ -31,6 +31,11 @@
 
   <!-- Markdown parser -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    /* Preload: prevent FOUC before body-reveal animation fires */
+    body { background-color: #0D1310; }
+  </style>
 </head>
 
 <body>
@@ -205,6 +210,14 @@
        SCRIPTS
   ================================================================ -->
   <script>
+    /* ------------------------------------------------------------------
+       Scroll-based header: transparent at rest → frosted on scroll
+    ------------------------------------------------------------------ */
+    const header = document.querySelector('.site-header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 36);
+    }, { passive: true });
+
     /* ------------------------------------------------------------------
        Posts registry
        Add new entries as content/[slug].md files are created.
