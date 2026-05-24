@@ -28,7 +28,7 @@ Hence, User adoption is the north star. Everything else is scaffolding. Once you
 
 The standard project flow looks like this:
 
-![Standard migration flow misses the critical user research step](./Users/antoinenguyen/Desktop/antoine-blog/content/image.png/failedscope.png)
+![Standard migration flow misses the critical user research step](content/image.png/failedscope.png)
 
 This flow has a fatal assumption embedded in it: that the source system is the truth about what users need.
 
@@ -42,7 +42,7 @@ Before defining any migration scope, you need answers to questions the source sy
 
 Looking at the source system gives you half the story. The other half lives in the habits, workarounds, and unspoken frustrations of the people who will determine whether this migration succeeds or fails.
 
-![The correct flow: user research before defining scope](/Users/antoinenguyen/Desktop/antoine-blog/content/image.png/successscope.png)
+![The correct flow: user research before defining scope](content/image.png/successscope.png)
 
 *[Visual: same flow, but with a gap marked between "Analyze Source System" and "Define Scope" — labeled: "This is where migrations are won or lost"]*
 
