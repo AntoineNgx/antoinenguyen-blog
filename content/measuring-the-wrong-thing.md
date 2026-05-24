@@ -1,6 +1,6 @@
 # **The Invisible Early Failure Symptom of a SaaS Migration Project**
 
-### You're Measuring the Wrong Thing. And That's Why Your SaaS Migration Is Already Failing.
+### Measuring the Wrong Thing is Why SaaS Migration Is Already Failing.
 
 After managing complex SaaS migrations across industries, I've watched well-run technical projects quietly die six months after go-live. The data was clean. The timeline held. The steering committee signed off.
 
@@ -28,7 +28,7 @@ Hence, User adoption is the north star. Everything else is scaffolding. Once you
 
 The standard project flow looks like this:
 
-*[Visual: linear flow — Analyze Source System → Define Scope → Implement → Close]*
+![Standard migration flow misses the critical user research step](./Users/antoinenguyen/Desktop/antoine-blog/content/image.png/failedscope.png)
 
 This flow has a fatal assumption embedded in it: that the source system is the truth about what users need.
 
@@ -41,6 +41,8 @@ Before defining any migration scope, you need answers to questions the source sy
 - Where does this system sit in their daily workflow — and is it central, peripheral, or actively worked around?
 
 Looking at the source system gives you half the story. The other half lives in the habits, workarounds, and unspoken frustrations of the people who will determine whether this migration succeeds or fails.
+
+![The correct flow: user research before defining scope](/Users/antoinenguyen/Desktop/antoine-blog/content/image.png/successscope.png)
 
 *[Visual: same flow, but with a gap marked between "Analyze Source System" and "Define Scope" — labeled: "This is where migrations are won or lost"]*
 
