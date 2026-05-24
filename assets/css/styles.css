@@ -32,7 +32,7 @@ body {
   background-color: var(--bg-base);
   color: var(--text-secondary);
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 400;
   line-height: 1.7;
   letter-spacing: 0.02em;
@@ -58,8 +58,8 @@ a { color: inherit; text-decoration: none; transition: color var(--dur); }
 :focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
 
 /* ---- Layout containers ---- */
-.container-narrow { max-width: 700px; margin: 0 auto; padding: 0 28px; }
-.container-wide   { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+.container-narrow { max-width: 1600px; margin: 0 auto; padding: 0 10%; }
+.container-wide   { max-width: 1600px; margin: 0 auto; padding: 0 10%; }
 
 /* ================================================================
    SITE HEADER
@@ -80,7 +80,7 @@ body.panel-open .site-header { visibility: hidden; }
 
 .wordmark {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 400;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -98,7 +98,7 @@ body.panel-open .site-header { visibility: hidden; }
 
 .site-nav a,
 .nav-filter {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -155,7 +155,7 @@ body.panel-open .site-header { visibility: hidden; }
 .feed-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
 
 .feed-tag {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -164,14 +164,14 @@ body.panel-open .site-header { visibility: hidden; }
 
 .feed-date {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.06em;
   color: var(--text-muted);
 }
 
 .feed-title {
   font-family: var(--font-sans);
-  font-size: 18px;
+  font-size: 21px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.10em;
@@ -183,12 +183,11 @@ body.panel-open .site-header { visibility: hidden; }
 .feed-item:hover .feed-title { color: var(--accent); }
 
 .feed-abstract {
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 400;
   color: var(--text-secondary);
   letter-spacing: 0.02em;
   line-height: 1.65;
-  max-width: 580px;
 }
 
 /* ================================================================
@@ -222,7 +221,7 @@ body.panel-open .site-header { visibility: hidden; }
 }
 
 .about-text {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.75;
   color: var(--text-secondary);
   letter-spacing: 0.02em;
@@ -230,7 +229,7 @@ body.panel-open .site-header { visibility: hidden; }
 
 .about-link {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.06em;
   color: var(--text-secondary);
   transition: color var(--dur);
@@ -280,7 +279,7 @@ body.reader-fullpage .reader-sidebar {
 }
 
 .sidebar-filter {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -375,7 +374,7 @@ body.reader-fullpage .reader-fp-header { display: block; }
 .reader-close,
 .reader-expand {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -392,18 +391,19 @@ body.reader-fullpage .reader-fp-header { display: block; }
 
 /* ---- Article prose ---- */
 .reader-inner {
-  padding: 48px 56px 112px;
-  max-width: 720px;
+  padding: 48px 8% 112px;
+  max-width: 960px;
 }
 
 /* In fullpage mode, center the content */
 body.reader-fullpage .reader-inner {
-  max-width: 740px;
+  max-width: 960px;
   margin: 0 auto;
+  padding: 48px 10% 112px;
 }
 
 .prose h1 {
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -413,7 +413,7 @@ body.reader-fullpage .reader-inner {
 }
 
 .prose h2 {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -422,7 +422,7 @@ body.reader-fullpage .reader-inner {
 }
 
 .prose h3 {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -431,7 +431,7 @@ body.reader-fullpage .reader-inner {
 }
 
 .prose p {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 400;
   line-height: 1.78;
   letter-spacing: 0.02em;
@@ -445,7 +445,7 @@ body.reader-fullpage .reader-inner {
 .prose ul, .prose ol { padding-left: 20px; margin-bottom: 22px; }
 
 .prose li {
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.78;
   letter-spacing: 0.02em;
   color: var(--text-secondary);
@@ -528,8 +528,8 @@ body.reader-fullpage .reader-inner {
   .reader-inner   { padding: 32px 24px 80px; }
 
   .site-nav { gap: 20px; }
-  .container-narrow { padding: 0 20px; }
-  .container-wide   { padding: 0 20px; }
+  .container-narrow { padding: 0 5%; }
+  .container-wide   { padding: 0 5%; }
 
   .about-row { grid-template-columns: 1fr; gap: 8px; }
 }

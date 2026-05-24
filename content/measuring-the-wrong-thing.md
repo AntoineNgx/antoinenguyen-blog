@@ -44,7 +44,6 @@ Looking at the source system gives you half the story. The other half lives in t
 
 ![The correct flow: user research before defining scope](content/image.png/successscope.png)
 
-*[Visual: same flow, but with a gap marked between "Analyze Source System" and "Define Scope" — labeled: "This is where migrations are won or lost"]*
 
 ### **The four questions that determine scope.**
 
