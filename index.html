@@ -36,7 +36,16 @@
         <a href="#" class="nav-filter active" data-filter="all">All</a>
         <a href="#" class="nav-filter" data-filter="professional">Professional</a>
         <a href="#" class="nav-filter" data-filter="research">Research</a>
-        <a href="#" class="nav-filter" data-filter="application">Application</a>
+        <div class="nav-dropdown-container" id="appDropdownContainer">
+          <a href="application/index.html" class="nav-dropdown-trigger" id="appTrigger">Application <span class="chevron">▾</span></a>
+          <div class="nav-dropdown">
+            <a href="application/index.html">Overview</a>
+            <a href="application/dashboard.html">Dashboard</a>
+            <a href="application/signal-detail.html">Signal Detail</a>
+            <a href="application/methodology.html">Methodology</a>
+            <a href="application/about.html">About the Lab</a>
+          </div>
+        </div>
         <a href="#" class="nav-filter" data-filter="about">About</a>
       </nav>
     </div>
@@ -159,7 +168,7 @@
       <a href="#" class="sidebar-filter active" data-filter="all">All</a>
       <a href="#" class="sidebar-filter" data-filter="professional">Professional</a>
       <a href="#" class="sidebar-filter" data-filter="research">Research</a>
-      <a href="#" class="sidebar-filter" data-filter="application">Application</a>
+      <a href="application/index.html" class="sidebar-filter" id="sidebarAppLink">Application</a>
       <a href="#" class="sidebar-filter" data-filter="about">About</a>
     </nav>
   </div>

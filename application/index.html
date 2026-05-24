@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Corporate Narrative Intelligence Lab — Antoine Nguyen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: {} } }</script>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <style>body { background-color: #F8F8F6; }</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="siteHeader">
+    <div class="container-wide flex items-center justify-between">
+      <a href="../index.html" class="wordmark">Antoine Nguyen</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="../index.html" class="nav-filter">All</a>
+        <a href="../index.html" class="nav-filter">Professional</a>
+        <a href="../index.html" class="nav-filter">Research</a>
+        <div class="nav-dropdown-container">
+          <a href="index.html" class="nav-dropdown-trigger active">Application <span class="chevron">▾</span></a>
+          <div class="nav-dropdown">
+            <a href="index.html" class="active">Overview</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="signal-detail.html">Signal Detail</a>
+            <a href="methodology.html">Methodology</a>
+            <a href="about.html">About the Lab</a>
+          </div>
+        </div>
+        <a href="../index.html" class="nav-filter">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- SUB-NAV -->
+  <div class="app-subnav">
+    <div class="app-subnav-inner">
+      <a href="index.html"         class="app-subnav-link active">Overview</a>
+      <a href="dashboard.html"     class="app-subnav-link">Dashboard</a>
+      <a href="signal-detail.html" class="app-subnav-link">Signal Detail</a>
+      <a href="methodology.html"   class="app-subnav-link">Methodology</a>
+      <a href="about.html"         class="app-subnav-link">About the Lab</a>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="container-narrow">
+
+    <!-- Intro -->
+    <div class="lab-intro">
+      <div class="lab-tag">Application · Research Demo</div>
+      <h1 class="lab-title">Corporate Narrative<br />Intelligence Lab</h1>
+      <p class="lab-desc">
+        Detecting strategic disclosure shifts in US biopharma 10-K filings.
+        MD&amp;A narrative · Tone · Readability · Topic · Cosine similarity.
+        Built as a portfolio demo on doctoral research examining how cyclical
+        financial performance and top management team changes affect annual
+        report language.
+      </p>
+    </div>
+
+    <!-- Company cards -->
+    <p class="lab-section-heading">Pre-loaded companies · MDA section · Real 10-K filings</p>
+
+    <div class="lab-company-grid">
+
+      <!-- AMGN -->
+      <div class="lab-company-card">
+        <div class="lab-ticker">AMGN · Biopharma · S&amp;P 500</div>
+        <div class="lab-company-name">Amgen</div>
+        <p class="lab-company-story">Pipeline shift from oncology to inflammation. Horizon Therapeutics acquisition (2023) created major disclosure expansion and a vocabulary break from prior years.</p>
+        <div class="lab-pill alert">⚠ 1 Abnormal Year</div>
+        <div class="lab-card-stats">
+          <div class="lab-stat">
+            <div class="lab-stat-label">Period</div>
+            <div class="lab-stat-value">2019–2023</div>
+          </div>
+          <div class="lab-stat">
+            <div class="lab-stat-label">Latest Tone</div>
+            <div class="lab-stat-value">+0.052</div>
+          </div>
+          <div class="lab-stat">
+            <div class="lab-stat-label">Filings</div>
+            <div class="lab-stat-value">5</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BIIB -->
+      <div class="lab-company-card">
+        <div class="lab-ticker">BIIB · Biopharma · S&amp;P 500</div>
+        <div class="lab-company-name">Biogen</div>
+        <p class="lab-company-story">Aducanumab (Aduhelm) FDA approval in 2021 — the most contested drug approval in two decades. Disclosure language shifted dramatically around pipeline risk and regulatory strategy.</p>
+        <div class="lab-pill alert">⚠ 2 Abnormal Years</div>
+        <div class="lab-card-stats">
+          <div class="lab-stat">
+            <div class="lab-stat-label">Period</div>
+            <div class="lab-stat-value">2019–2023</div>
+          </div>
+          <div class="lab-stat">
+            <div class="lab-stat-label">Latest Tone</div>
+            <div class="lab-stat-value">+0.044</div>
+          </div>
+          <div class="lab-stat">
+            <div class="lab-stat-label">Filings</div>
+            <div class="lab-stat-value">5</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- REGN -->
+      <div class="lab-company-card">
+        <div class="lab-ticker">REGN · Biopharma · S&amp;P 500</div>
+        <div class="lab-company-name">Regeneron</div>
+        <p class="lab-company-story">REGEN-COV antibody cocktail dominated 2020 MD&A. Post-COVID portfolio diversification — Eylea HD, Dupixent expansion — visible in 2022–23 disclosure evolution.</p>
+        <div class="lab-pill alert">⚠ 1 Abnormal Year</div>
+        <div class="lab-card-stats">
+          <div class="lab-stat">
+            <div class="lab-stat-label">Period</div>
+            <div class="lab-stat-value">2019–2023</div>
+          </div>
+          <div class="lab-stat">
+            <div class="lab-stat-label">Latest Tone</div>
+            <div class="lab-stat-value">+0.056</div>
+          </div>
+          <div class="lab-stat">
+            <div class="lab-stat-label">Filings</div>
+            <div class="lab-stat-value">5</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /company grid -->
+
+    <!-- CTA -->
+    <div style="text-align:center; margin-bottom: 64px;">
+      <a href="dashboard.html" style="
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--bg-base);
+        background: var(--accent);
+        padding: 16px 36px;
+        transition: background var(--dur);
+      " onmouseover="this.style.background='var(--accent-dim)'" onmouseout="this.style.background='var(--accent)'">
+        Explore Full Analysis →
+      </a>
+    </div>
+
+    <!-- Research context -->
+    <p class="lab-section-heading">Research Context</p>
+
+    <div class="method-list" style="margin-top: 0;">
+      <div class="method-item">
+        <div class="method-signal">Foundation</div>
+        <div class="method-desc">Built on doctoral research examining how <strong>cyclical financial performance</strong> and <strong>top management team changes</strong> affect narrative strategy in annual report disclosures. Data: US biopharma 10-K filings (Item 7 MD&A), with financial data from S&P Global.</div>
+      </div>
+      <div class="method-item">
+        <div class="method-signal">Key Signals</div>
+        <div class="method-desc">Cosine similarity (year-over-year text stability) · Sentiment analysis (LM finance dictionary) · Gunning Fog readability · TF-IDF topic shift · Abnormal change score cross-referenced with ROA and leadership events.</div>
+      </div>
+      <div class="method-item">
+        <div class="method-signal">Scope</div>
+        <div class="method-desc">Portfolio demo — not an investment, legal, or academic regression product. Designed to show how unstructured corporate disclosure text can be transformed into decision signals.</div>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container-narrow">
+      <p class="footer-line">
+        <a href="../index.html">← Back to blog</a>
+        <span style="margin: 0 20px; opacity: 0.3;">—</span>
+        <a href="mailto:contact@antoinenguyen.io">contact@antoinenguyen.io</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 36);
+    }, { passive: true });
+  </script>
+
+</body>
+</html>

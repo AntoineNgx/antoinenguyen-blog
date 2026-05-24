@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Narrative Dashboard — Corporate Narrative Intelligence Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <style>
+    body { background-color: #F8F8F6; }
+    canvas { max-height: 240px; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="siteHeader">
+    <div class="container-wide flex items-center justify-between">
+      <a href="../index.html" class="wordmark">Antoine Nguyen</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="../index.html" class="nav-filter">All</a>
+        <a href="../index.html" class="nav-filter">Professional</a>
+        <a href="../index.html" class="nav-filter">Research</a>
+        <div class="nav-dropdown-container">
+          <a href="index.html" class="nav-dropdown-trigger active">Application <span class="chevron">▾</span></a>
+          <div class="nav-dropdown">
+            <a href="index.html">Overview</a>
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="signal-detail.html">Signal Detail</a>
+            <a href="methodology.html">Methodology</a>
+            <a href="about.html">About the Lab</a>
+          </div>
+        </div>
+        <a href="../index.html" class="nav-filter">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- SUB-NAV -->
+  <div class="app-subnav">
+    <div class="app-subnav-inner">
+      <a href="index.html"         class="app-subnav-link">Overview</a>
+      <a href="dashboard.html"     class="app-subnav-link active">Dashboard</a>
+      <a href="signal-detail.html" class="app-subnav-link">Signal Detail</a>
+      <a href="methodology.html"   class="app-subnav-link">Methodology</a>
+      <a href="about.html"         class="app-subnav-link">About the Lab</a>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="container-narrow">
+
+    <div class="lab-intro" style="padding-bottom: 36px; margin-bottom: 36px;">
+      <div class="lab-tag">Narrative Dashboard</div>
+      <h1 class="lab-title">Year-over-Year Disclosure Analysis</h1>
+      <p class="lab-desc">US biopharma 10-K MD&A · Tone · Readability · Stability · Topic shift</p>
+    </div>
+
+    <!-- Company selector tabs -->
+    <div class="company-tabs" id="companyTabs">
+      <button class="company-tab active" data-co="AMGN">AMGN · Amgen</button>
+      <button class="company-tab" data-co="BIIB">BIIB · Biogen</button>
+      <button class="company-tab" data-co="REGN">REGN · Regeneron</button>
+    </div>
+
+    <!-- Story banner -->
+    <div class="lab-alert-banner ok" id="storyBanner" style="margin-bottom: 32px;"></div>
+
+    <!-- KPI row -->
+    <div class="kpi-grid" id="kpiGrid">
+      <div class="kpi-card">
+        <div class="kpi-label">Years Analyzed</div>
+        <div class="kpi-value" id="kpiYears">5</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Abnormal Alerts</div>
+        <div class="kpi-value" id="kpiAlerts">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Latest Net Tone</div>
+        <div class="kpi-value" id="kpiTone">—</div>
+        <div class="kpi-delta" id="kpiToneDelta"></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Latest Fog Index</div>
+        <div class="kpi-value" id="kpiFog">—</div>
+        <div class="kpi-delta">≥12 complex · ≥17 very complex</div>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="chart-grid">
+      <div class="chart-card">
+        <div class="chart-card-title">Narrative Stability — Cosine Similarity</div>
+        <canvas id="chartStability"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">Tone Composition — LM Dictionary</div>
+        <canvas id="chartTone"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">Readability — Gunning Fog Index</div>
+        <canvas id="chartFog"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">Topic Shift Score — Year-over-Year</div>
+        <canvas id="chartTopic"></canvas>
+      </div>
+    </div>
+
+    <!-- Alerts table -->
+    <p class="lab-section-heading">Abnormal Change Alerts</p>
+    <div id="alertsArea"></div>
+
+    <div style="margin: 48px 0 64px; display: flex; gap: 16px;">
+      <a href="signal-detail.html" style="
+        font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+        color: var(--bg-base); background: var(--accent); padding: 14px 28px; display: inline-block;
+        transition: background var(--dur);"
+        onmouseover="this.style.background='var(--accent-dim)'" onmouseout="this.style.background='var(--accent)'">
+        View Signal Detail →
+      </a>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container-narrow">
+      <p class="footer-line">
+        <a href="../index.html">← Back to blog</a>
+        <span style="margin: 0 20px; opacity: 0.3;">—</span>
+        <a href="mailto:contact@antoinenguyen.io">contact@antoinenguyen.io</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 36), { passive: true });
+
+    /* ── Sample data ── */
+    const DATA = {
+      AMGN: {
+        name: 'Amgen', story: 'Pipeline shift from oncology to inflammation. Horizon Therapeutics acquisition (2023) created major disclosure expansion.',
+        years: [2019, 2020, 2021, 2022, 2023],
+        similarity:  [null, 0.82, 0.71, 0.85, 0.89],
+        netTone:     [0.045, 0.042, 0.031, 0.048, 0.052],
+        posRatio:    [0.082, 0.079, 0.065, 0.086, 0.091],
+        negRatio:    [0.037, 0.037, 0.034, 0.038, 0.039],
+        uncRatio:    [0.041, 0.044, 0.052, 0.040, 0.038],
+        fogIndex:    [14.2, 14.5, 15.1, 14.3, 14.1],
+        topicShift:  [null, 0.18, 0.42, 0.21, 0.14],
+        alerts: [{ year: 2021, score: 0.71, reason: 'Similarity drop + readability increase + topic shift coincide with pipeline restructuring announcement.' }],
+      },
+      BIIB: {
+        name: 'Biogen', story: 'Aducanumab (Aduhelm) FDA approval in 2021 — the most contested approval in two decades. Disclosure language shifted dramatically around pipeline risk.',
+        years: [2019, 2020, 2021, 2022, 2023],
+        similarity:  [null, 0.85, 0.63, 0.74, 0.81],
+        netTone:     [0.038, 0.035, 0.018, 0.041, 0.044],
+        posRatio:    [0.074, 0.072, 0.055, 0.078, 0.082],
+        negRatio:    [0.036, 0.037, 0.037, 0.037, 0.038],
+        uncRatio:    [0.048, 0.050, 0.062, 0.046, 0.042],
+        fogIndex:    [15.1, 15.3, 16.2, 15.5, 15.0],
+        topicShift:  [null, 0.14, 0.58, 0.35, 0.22],
+        alerts: [
+          { year: 2021, score: 0.88, reason: 'Largest similarity drop in sample. Tone collapses. High uncertainty ratio. Aduhelm regulatory controversy.' },
+          { year: 2022, score: 0.61, reason: 'Partial recovery with elevated topic shift — new pipeline framing following Aduhelm withdrawal from EU.' },
+        ],
+      },
+      REGN: {
+        name: 'Regeneron', story: 'REGEN-COV antibody cocktail dominated 2020 MD&A. Post-COVID portfolio diversification — Eylea HD, Dupixent expansion — visible in 2022–23.',
+        years: [2019, 2020, 2021, 2022, 2023],
+        similarity:  [null, 0.72, 0.84, 0.87, 0.90],
+        netTone:     [0.049, 0.041, 0.055, 0.052, 0.056],
+        posRatio:    [0.089, 0.082, 0.094, 0.091, 0.095],
+        negRatio:    [0.040, 0.041, 0.039, 0.039, 0.039],
+        uncRatio:    [0.038, 0.045, 0.037, 0.036, 0.034],
+        fogIndex:    [13.8, 14.6, 13.5, 13.2, 13.0],
+        topicShift:  [null, 0.51, 0.28, 0.18, 0.12],
+        alerts: [
+          { year: 2020, score: 0.74, reason: 'COVID-19 dominates narrative. Similarity drop + topic shift. New vocabulary cluster: antibody, cocktail, EUA, emergency authorization.' },
+        ],
+      },
+    };
+
+    const ACCENT   = '#3E5446';
+    const MUTED    = '#A0A09E';
+    const ALERT_C  = '#F59E0B';
+    const BORDER   = '#E6E6E4';
+    const FONT     = "'Inter', system-ui, sans-serif";
+
+    Chart.defaults.font.family = FONT;
+    Chart.defaults.color = MUTED;
+
+    let charts = {};
+
+    function buildCharts(co) {
+      const d = DATA[co];
+      const years = d.years;
+      const simYears  = years.slice(1);
+      const simData   = d.similarity.slice(1);
+      const topicData = d.topicShift.slice(1);
+
+      const alertYears = d.alerts.map(a => a.year);
+
+      // destroy previous
+      Object.values(charts).forEach(c => c.destroy());
+      charts = {};
+
+      const opts = (extra = {}) => ({
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { color: BORDER }, ticks: { font: { size: 11 } } },
+          y: { grid: { color: BORDER }, ticks: { font: { size: 11 } } },
+        },
+        ...extra,
+      });
+
+      // Stability
+      charts.stability = new Chart(document.getElementById('chartStability'), {
+        type: 'line',
+        data: {
+          labels: simYears,
+          datasets: [{
+            data: simData,
+            borderColor: ACCENT,
+            borderWidth: 2.5,
+            pointBackgroundColor: simYears.map(y => alertYears.includes(y) ? ALERT_C : ACCENT),
+            pointRadius: 6,
+            fill: false,
+            tension: 0.15,
+          }],
+        },
+        options: {
+          ...opts(),
+          plugins: { ...opts().plugins, annotation: {} },
+          scales: { ...opts().scales, y: { ...opts().scales.y, min: 0.4, max: 1.0, ticks: { font: { size: 11 }, callback: v => v.toFixed(2) } } },
+        },
+      });
+
+      // Tone composition
+      charts.tone = new Chart(document.getElementById('chartTone'), {
+        type: 'bar',
+        data: {
+          labels: years,
+          datasets: [
+            { label: 'Positive', data: d.posRatio, backgroundColor: 'rgba(16,185,129,0.7)', borderRadius: 2 },
+            { label: 'Negative', data: d.negRatio, backgroundColor: 'rgba(239,68,68,0.7)',  borderRadius: 2 },
+            { label: 'Uncertainty', data: d.uncRatio, backgroundColor: 'rgba(245,158,11,0.7)', borderRadius: 2 },
+          ],
+        },
+        options: {
+          ...opts(),
+          plugins: { legend: { display: true, position: 'top', labels: { font: { size: 10 }, boxWidth: 10, padding: 16 } } },
+        },
+      });
+
+      // Fog
+      charts.fog = new Chart(document.getElementById('chartFog'), {
+        type: 'line',
+        data: {
+          labels: years,
+          datasets: [{
+            data: d.fogIndex,
+            borderColor: ACCENT,
+            borderWidth: 2.5,
+            pointBackgroundColor: ACCENT,
+            pointRadius: 5,
+            fill: false,
+            tension: 0.2,
+          }],
+        },
+        options: opts(),
+      });
+
+      // Topic shift
+      charts.topic = new Chart(document.getElementById('chartTopic'), {
+        type: 'bar',
+        data: {
+          labels: simYears,
+          datasets: [{
+            data: topicData,
+            backgroundColor: simYears.map(y => alertYears.includes(y) ? 'rgba(245,158,11,0.75)' : 'rgba(62,84,70,0.65)'),
+            borderRadius: 2,
+          }],
+        },
+        options: opts(),
+      });
+    }
+
+    function updateKPIs(co) {
+      const d = DATA[co];
+      const last = d.netTone.length - 1;
+      const tone = d.netTone[last];
+      const prevTone = d.netTone[last - 1];
+      const delta = (tone - prevTone).toFixed(3);
+      const sign = delta >= 0 ? '+' : '';
+
+      document.getElementById('kpiYears').textContent  = d.years.length;
+      document.getElementById('kpiAlerts').textContent = d.alerts.length;
+      document.getElementById('kpiTone').textContent   = `+${tone.toFixed(3)}`;
+      document.getElementById('kpiToneDelta').textContent = `${sign}${delta} vs prior year`;
+      document.getElementById('kpiFog').textContent    = d.fogIndex[last].toFixed(1);
+      document.getElementById('storyBanner').textContent = `${d.name} — ${d.story}`;
+    }
+
+    function updateAlerts(co) {
+      const d = DATA[co];
+      const el = document.getElementById('alertsArea');
+      if (d.alerts.length === 0) {
+        el.innerHTML = '<div class="lab-alert-banner ok">No abnormal narrative changes detected for this company.</div>';
+        return;
+      }
+      let rows = d.alerts.map(a => `
+        <tr class="flagged">
+          <td>${a.year}</td>
+          <td>${a.score.toFixed(2)}</td>
+          <td style="font-family: var(--font-sans); font-size: 13px; color: var(--text-secondary); letter-spacing: 0;">${a.reason}</td>
+        </tr>
+      `).join('');
+      el.innerHTML = `
+        <div class="lab-alert-banner warning" style="margin-bottom: 20px;">
+          ${d.alerts.length} year${d.alerts.length > 1 ? 's' : ''} flagged as abnormal.
+          Click <a href="signal-detail.html" style="color: var(--accent);">Signal Detail</a> to drill down.
+        </div>
+        <table class="lab-table">
+          <thead><tr>
+            <th>Year</th><th>Score</th><th>Reason</th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table>`;
+    }
+
+    function switchCompany(co) {
+      document.querySelectorAll('.company-tab').forEach(t => t.classList.toggle('active', t.dataset.co === co));
+      updateKPIs(co);
+      buildCharts(co);
+      updateAlerts(co);
+    }
+
+    document.querySelectorAll('.company-tab').forEach(btn => {
+      btn.addEventListener('click', () => switchCompany(btn.dataset.co));
+    });
+
+    switchCompany('AMGN');
+  </script>
+
+</body>
+</html>

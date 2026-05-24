@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About the Lab — Corporate Narrative Intelligence Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <style>body { background-color: #F8F8F6; }</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="siteHeader">
+    <div class="container-wide flex items-center justify-between">
+      <a href="../index.html" class="wordmark">Antoine Nguyen</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="../index.html" class="nav-filter">All</a>
+        <a href="../index.html" class="nav-filter">Professional</a>
+        <a href="../index.html" class="nav-filter">Research</a>
+        <div class="nav-dropdown-container">
+          <a href="index.html" class="nav-dropdown-trigger active">Application <span class="chevron">▾</span></a>
+          <div class="nav-dropdown">
+            <a href="index.html">Overview</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="signal-detail.html">Signal Detail</a>
+            <a href="methodology.html">Methodology</a>
+            <a href="about.html" class="active">About the Lab</a>
+          </div>
+        </div>
+        <a href="../index.html" class="nav-filter">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- SUB-NAV -->
+  <div class="app-subnav">
+    <div class="app-subnav-inner">
+      <a href="index.html"         class="app-subnav-link">Overview</a>
+      <a href="dashboard.html"     class="app-subnav-link">Dashboard</a>
+      <a href="signal-detail.html" class="app-subnav-link">Signal Detail</a>
+      <a href="methodology.html"   class="app-subnav-link">Methodology</a>
+      <a href="about.html"         class="app-subnav-link active">About the Lab</a>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="container-narrow">
+
+    <div class="lab-intro" style="padding-bottom: 36px; margin-bottom: 0;">
+      <div class="lab-tag">About the Lab</div>
+      <h1 class="lab-title">Corporate Narrative<br />Intelligence</h1>
+      <p class="lab-desc">
+        A portfolio demo for analyzing how public-company disclosure language changes over time.
+        Designed for biopharma annual report narratives — the architecture adapts to any sector
+        with sufficient filing history.
+      </p>
+    </div>
+
+    <div class="method-list">
+
+      <div class="method-item">
+        <div class="method-signal">Purpose</div>
+        <div class="method-desc">
+          Demonstrate product thinking, text analytics, interpretable AI-assisted analysis,
+          and dashboard storytelling. This project is a research portfolio piece — not financial
+          advice, legal guidance, or an academic regression model ready for peer review.
+          <br /><br />
+          The underlying research question: <em>do companies that experience negative cyclical
+          financial performance, or top management team turnover, exhibit measurably different
+          disclosure language patterns in their annual reports?</em>
+        </div>
+      </div>
+
+      <div class="method-item">
+        <div class="method-signal">Out of Scope</div>
+        <div class="method-desc">
+          The following are intentionally excluded from this demo version:
+          <br /><br />
+          User authentication · Live SEC/EDGAR scraping · Paid data integrations (Bloomberg, Refinitiv) ·
+          Real-time financial data · Multi-user workspaces · Full academic regression engine with
+          bootstrapped confidence intervals · Production-grade MLOps pipeline.
+        </div>
+      </div>
+
+      <div class="method-item">
+        <div class="method-signal">Tech Stack</div>
+        <div class="method-desc">
+          <strong>Analysis:</strong> Python · pandas · scikit-learn (TF-IDF, cosine similarity) ·
+          NLTK (tokenization, Gunning Fog) · Loughran–McDonald financial dictionary ·
+          FinBERT-compatible sentiment schema.<br /><br />
+          <strong>Demo interface:</strong> Streamlit (Python) — the original app — ported
+          to static HTML/JS for integration into this blog. Chart.js for interactive visualizations.<br /><br />
+          <strong>Data:</strong> EDGAR 10-K filings (Item 7 MD&A sections) ·
+          S&P Global financial data · BoardEx leadership events.
+        </div>
+      </div>
+
+      <div class="method-item">
+        <div class="method-signal">Extensions</div>
+        <div class="method-desc">
+          Natural extensions of the current architecture:
+          <br /><br />
+          · Replace the LM lexical scorer with a fine-tuned FinBERT model once labeled examples exist<br />
+          · Add entity extraction to auto-classify leadership events from 8-K press releases<br />
+          · Extend to 10-K Business Description (Item 1) for strategy-level language changes<br />
+          · Build a regression model to test statistical significance of narrative shifts vs. financial outcomes<br />
+          · Multi-sector expansion (energy, financial services, consumer)
+        </div>
+      </div>
+
+      <div class="method-item">
+        <div class="method-signal">Source</div>
+        <div class="method-desc">
+          Full source code available on GitHub:
+          <br /><br />
+          <a href="https://github.com/AntoineNgx/corporate-narrative-intelligence-lab"
+             target="_blank" rel="noopener"
+             style="font-family: var(--font-mono); font-size: 13px; color: var(--accent); letter-spacing: 0.04em;">
+            github.com/AntoineNgx/corporate-narrative-intelligence-lab
+          </a>
+          <br /><br />
+          Built by Antoine Nguyen · <a href="mailto:contact@antoinenguyen.io" style="color: var(--accent);">contact@antoinenguyen.io</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin: 64px 0; display: flex; gap: 20px; flex-wrap: wrap;">
+      <a href="index.html" style="
+        font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+        color: var(--bg-base); background: var(--accent); padding: 14px 28px; display: inline-block;
+        transition: background var(--dur);"
+        onmouseover="this.style.background='var(--accent-dim)'" onmouseout="this.style.background='var(--accent)'">
+        View Overview
+      </a>
+      <a href="dashboard.html" style="
+        font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+        color: var(--accent); border: 1px solid var(--accent); padding: 14px 28px; display: inline-block;
+        transition: background var(--dur), color var(--dur);"
+        onmouseover="this.style.background='var(--accent)';this.style.color='var(--bg-base)'"
+        onmouseout="this.style.background='';this.style.color='var(--accent)'">
+        Explore Dashboard
+      </a>
+    </div>
+
+  </div><!-- /container -->
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container-narrow">
+      <p class="footer-line">
+        <a href="../index.html">← Back to blog</a>
+        <span style="margin: 0 20px; opacity: 0.3;">—</span>
+        <a href="mailto:contact@antoinenguyen.io">contact@antoinenguyen.io</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 36), { passive: true });
+  </script>
+
+</body>
+</html>

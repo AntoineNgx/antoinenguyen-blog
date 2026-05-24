@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signal Detail — Corporate Narrative Intelligence Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <style>body { background-color: #F8F8F6; }</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="siteHeader">
+    <div class="container-wide flex items-center justify-between">
+      <a href="../index.html" class="wordmark">Antoine Nguyen</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="../index.html" class="nav-filter">All</a>
+        <a href="../index.html" class="nav-filter">Professional</a>
+        <a href="../index.html" class="nav-filter">Research</a>
+        <div class="nav-dropdown-container">
+          <a href="index.html" class="nav-dropdown-trigger active">Application <span class="chevron">▾</span></a>
+          <div class="nav-dropdown">
+            <a href="index.html">Overview</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="signal-detail.html" class="active">Signal Detail</a>
+            <a href="methodology.html">Methodology</a>
+            <a href="about.html">About the Lab</a>
+          </div>
+        </div>
+        <a href="../index.html" class="nav-filter">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- SUB-NAV -->
+  <div class="app-subnav">
+    <div class="app-subnav-inner">
+      <a href="index.html"         class="app-subnav-link">Overview</a>
+      <a href="dashboard.html"     class="app-subnav-link">Dashboard</a>
+      <a href="signal-detail.html" class="app-subnav-link active">Signal Detail</a>
+      <a href="methodology.html"   class="app-subnav-link">Methodology</a>
+      <a href="about.html"         class="app-subnav-link">About the Lab</a>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="container-narrow">
+
+    <div class="lab-intro" style="padding-bottom: 36px; margin-bottom: 36px;">
+      <div class="lab-tag">Signal Detail</div>
+      <h1 class="lab-title">Narrative Change Inspector</h1>
+      <p class="lab-desc">Drill into any flagged year-over-year transition. Before &amp; after excerpt comparison, signal breakdown, and linked leadership or financial events.</p>
+    </div>
+
+    <!-- Case selector -->
+    <p class="lab-section-heading" style="margin-top: 0;">Select a narrative change</p>
+
+    <div class="company-tabs" id="caseTabs">
+      <button class="company-tab active" data-case="biib2021">BIIB 2020→2021</button>
+      <button class="company-tab" data-case="regn2020">REGN 2019→2020</button>
+      <button class="company-tab" data-case="amgn2021">AMGN 2020→2021</button>
+    </div>
+
+    <!-- KPI row -->
+    <div class="kpi-grid" id="signalKpis" style="grid-template-columns: repeat(5,1fr);">
+      <div class="kpi-card">
+        <div class="kpi-label">Similarity</div>
+        <div class="kpi-value" id="skSim">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Sim. Drop</div>
+        <div class="kpi-value" id="skDrop">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Δ Tone</div>
+        <div class="kpi-value" id="skTone">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Δ Fog</div>
+        <div class="kpi-value" id="skFog">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Topic Shift</div>
+        <div class="kpi-value" id="skTopic">—</div>
+      </div>
+    </div>
+
+    <!-- Alert banner -->
+    <div class="lab-alert-banner warning" id="signalBanner"></div>
+
+    <!-- Before / After -->
+    <p class="lab-section-heading">Text Excerpt Comparison</p>
+    <div class="signal-compare">
+      <div class="signal-pane">
+        <div class="signal-pane-year" id="beforeYear">Before</div>
+        <div class="signal-pane-text" id="beforeText"></div>
+      </div>
+      <div class="signal-pane">
+        <div class="signal-pane-year" id="afterYear">After</div>
+        <div class="signal-pane-text" id="afterText"></div>
+      </div>
+    </div>
+
+    <!-- Interpretation -->
+    <p class="lab-section-heading">Interpretation</p>
+    <div class="lab-alert-banner warning" id="interpretBanner" style="margin-bottom: 40px;"></div>
+
+    <!-- Events -->
+    <p class="lab-section-heading">Linked Leadership or Financial Events</p>
+    <div id="eventsArea" style="margin-bottom: 64px;"></div>
+
+  </div><!-- /container -->
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container-narrow">
+      <p class="footer-line">
+        <a href="../index.html">← Back to blog</a>
+        <span style="margin: 0 20px; opacity: 0.3;">—</span>
+        <a href="mailto:contact@antoinenguyen.io">contact@antoinenguyen.io</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 36), { passive: true });
+
+    const CASES = {
+      biib2021: {
+        label: 'BIIB · 2020 → 2021',
+        sim: 0.63, drop: 0.22, tone: -0.017, fog: +0.9, topic: 0.58,
+        reason: 'Largest similarity drop in the sample. Tone collapses by 0.017 — the biggest single-year shift for any company. Uncertainty ratio peaks at 0.062. Aduhelm regulatory controversy drove a complete vocabulary restructuring around pipeline risk, regulatory strategy, and CMS coverage uncertainty.',
+        beforeYear: '2020 MD&A — Pre-Approval',
+        afterYear:  '2021 MD&A — Aduhelm Launch',
+        before: '"We continued to advance aducanumab through clinical development with the goal of demonstrating meaningful clinical benefit in early Alzheimer\'s disease patients. Our research programs remain focused on high-value neurology targets where unmet medical need is substantial." The language is controlled, aspirational, and forward-looking.',
+        after:  '"The FDA\'s accelerated approval of aducanumab under the brand name Aduhelm created significant uncertainty regarding commercial coverage and reimbursement... CMS initiated a national coverage determination process, which we believe may limit patient access... We have taken steps to reduce the price of Aduhelm, however, we cannot predict the ultimate coverage outcomes." Defensive, risk-laden register throughout.',
+        interpretation: 'The 2021 filing shows the signature pattern of regulatory crisis disclosure: similarity collapse, tone decline, readability increase (complexity of legal/regulatory language), and topic bifurcation between pre-launch and post-launch vocabulary clusters.',
+        events: [
+          { date: '2021-06-07', type: 'Regulatory', description: 'FDA grants accelerated approval for Aduhelm (aducanumab) — first Alzheimer\'s disease drug approved in 18 years.' },
+          { date: '2021-07-19', type: 'Commercial', description: 'CMS initiates National Coverage Determination review, effectively limiting Medicare coverage pending further clinical data.' },
+          { date: '2022-01-11', type: 'Pricing',    description: 'Biogen cuts Aduhelm price by 50% to ~$28,200/year following prescriber and payer resistance.' },
+        ],
+      },
+      regn2020: {
+        label: 'REGN · 2019 → 2020',
+        sim: 0.72, drop: 0.17, tone: -0.008, fog: +0.8, topic: 0.51,
+        reason: 'Highest topic shift score in the dataset. COVID-19 antibody cocktail REGEN-COV introduced an entirely new vocabulary cluster (antibody, emergency use authorization, cocktail, EUA, COVID-19). Similarity drop is significant but tone remains relatively stable — the shift is topical, not attitudinal.',
+        beforeYear: '2019 MD&A — Pre-COVID',
+        afterYear:  '2020 MD&A — COVID Pivot',
+        before:  '"Our commercial revenues are primarily derived from net product sales of EYLEA in the United States and from our share of Dupixent net product sales in the United States and profits from ex-U.S. sales of Dupixent. We continue to advance our pipeline with a focus on antibody-based therapeutics and our novel Veloci-Suite platform."',
+        after:   '"In 2020, we developed REGEN-COV (casirivimab and imdevimab), our antibody cocktail for the treatment and prevention of COVID-19. In November 2020, the FDA granted Emergency Use Authorization for REGEN-COV for treatment of mild-to-moderate COVID-19 in certain high-risk patients... The COVID-19 pandemic affected our operations, clinical trial conduct, and supply chain in ways we continue to monitor."',
+        interpretation: 'A clear external-shock narrative pattern: topic shift driven by a single dominant product cluster rather than strategic repositioning. Tone stability and subsequent similarity recovery (0.84 in 2021) confirm this is a temporary vocabulary injection rather than a structural disclosure shift.',
+        events: [
+          { date: '2020-03-11', type: 'External', description: 'WHO declares COVID-19 pandemic. Regeneron pivots research focus to coronavirus antibody development.' },
+          { date: '2020-11-21', type: 'Regulatory', description: 'FDA grants Emergency Use Authorization for REGEN-COV (casirivimab and imdevimab) antibody cocktail.' },
+          { date: '2021-01',   type: 'Commercial', description: 'US government secures 1.5M doses of REGEN-COV; significant revenues recorded in FY2021.' },
+        ],
+      },
+      amgn2021: {
+        label: 'AMGN · 2020 → 2021',
+        sim: 0.71, drop: 0.11, tone: -0.011, fog: +0.6, topic: 0.42,
+        reason: 'Moderate abnormal signal — similarity drop falls below the 0.75 stability threshold. Topic shift driven by Lumakras (sotorasib) launch vocabulary and biosimilar portfolio expansion. Tone dip is minor but consistent with pipeline transition disclosure.',
+        beforeYear: '2020 MD&A — Pre-Lumakras',
+        afterYear:  '2021 MD&A — Lumakras Launch',
+        before:  '"Our marketed products are primarily focused on oncology, hematology, cardiovascular disease, inflammation, bone health, and neuroscience. We continue to invest in our pipeline with an emphasis on first-in-class and best-in-class biologics that address areas of significant unmet medical need."',
+        after:   '"In May 2021, LUMAKRAS (sotorasib) received accelerated FDA approval for patients with KRAS G12C-mutated locally advanced or metastatic NSCLC... This first-in-class KRAS inhibitor represents a significant expansion of our oncology franchise into a previously undruggable target. We are also advancing our biosimilar portfolio, with AMJEVITA and KANJINTI contributing to revenue diversification."',
+        interpretation: 'The 2021 filing reflects a planned strategic communication shift rather than a reactive event. New product launch vocabulary co-occurs with biosimilar commercialization language, creating a moderately elevated topic shift. The moderate score distinguishes this from crisis-driven disclosures like BIIB 2021.',
+        events: [
+          { date: '2021-05-28', type: 'Regulatory', description: 'FDA grants accelerated approval for LUMAKRAS (sotorasib) — first KRAS inhibitor to reach market.' },
+          { date: '2022-12',   type: 'M&A',         description: 'Amgen announces $27.8B acquisition of Horizon Therapeutics — largest biotech deal of 2022.' },
+        ],
+      },
+    };
+
+    function renderCase(key) {
+      const c = CASES[key];
+      document.getElementById('skSim').textContent   = c.sim.toFixed(2);
+      document.getElementById('skDrop').textContent  = c.drop.toFixed(2);
+      document.getElementById('skTone').textContent  = (c.tone >= 0 ? '+' : '') + c.tone.toFixed(3);
+      document.getElementById('skFog').textContent   = (c.fog >= 0 ? '+' : '') + c.fog.toFixed(1);
+      document.getElementById('skTopic').textContent = c.topic.toFixed(2);
+      document.getElementById('signalBanner').textContent = c.reason;
+      document.getElementById('beforeYear').textContent = c.beforeYear;
+      document.getElementById('afterYear').textContent  = c.afterYear;
+      document.getElementById('beforeText').textContent = c.before;
+      document.getElementById('afterText').textContent  = c.after;
+      document.getElementById('interpretBanner').textContent = c.interpretation;
+
+      const rows = c.events.map(e => `
+        <tr>
+          <td>${e.date}</td>
+          <td>${e.type}</td>
+          <td style="font-family: var(--font-sans); font-size: 13px; color: var(--text-secondary); letter-spacing: 0;">${e.description}</td>
+        </tr>`).join('');
+      document.getElementById('eventsArea').innerHTML = `
+        <table class="lab-table">
+          <thead><tr><th>Date</th><th>Type</th><th>Event</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>`;
+    }
+
+    document.querySelectorAll('.company-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.company-tab').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        renderCase(btn.dataset.case);
+      });
+    });
+
+    renderCase('biib2021');
+  </script>
+
+</body>
+</html>

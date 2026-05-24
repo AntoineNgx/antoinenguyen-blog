@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Methodology — Corporate Narrative Intelligence Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <style>body { background-color: #F8F8F6; }</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="siteHeader">
+    <div class="container-wide flex items-center justify-between">
+      <a href="../index.html" class="wordmark">Antoine Nguyen</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="../index.html" class="nav-filter">All</a>
+        <a href="../index.html" class="nav-filter">Professional</a>
+        <a href="../index.html" class="nav-filter">Research</a>
+        <div class="nav-dropdown-container">
+          <a href="index.html" class="nav-dropdown-trigger active">Application <span class="chevron">▾</span></a>
+          <div class="nav-dropdown">
+            <a href="index.html">Overview</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="signal-detail.html">Signal Detail</a>
+            <a href="methodology.html" class="active">Methodology</a>
+            <a href="about.html">About the Lab</a>
+          </div>
+        </div>
+        <a href="../index.html" class="nav-filter">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- SUB-NAV -->
+  <div class="app-subnav">
+    <div class="app-subnav-inner">
+      <a href="index.html"         class="app-subnav-link">Overview</a>
+      <a href="dashboard.html"     class="app-subnav-link">Dashboard</a>
+      <a href="signal-detail.html" class="app-subnav-link">Signal Detail</a>
+      <a href="methodology.html"   class="app-subnav-link active">Methodology</a>
+      <a href="about.html"         class="app-subnav-link">About the Lab</a>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="container-narrow">
+
+    <div class="lab-intro" style="padding-bottom: 36px; margin-bottom: 0;">
+      <div class="lab-tag">Methodology</div>
+      <h1 class="lab-title">Hybrid Textual Analysis Model</h1>
+      <p class="lab-desc">
+        Transparent lexical scoring combined with an AI-compatible sentiment interface.
+        All models run offline using deterministic scoring — deployable without API dependencies.
+      </p>
+    </div>
+
+    <!-- Signal methods -->
+    <div class="method-list">
+
+      <div class="method-item">
+        <div class="method-signal">Cosine Similarity</div>
+        <div class="method-desc">
+          TF-IDF vector representation of each annual filing, compared year-over-year using cosine distance.
+          A score of 1.0 indicates identical term distributions; scores below 0.75 are treated as potentially
+          significant narrative changes. This is the primary stability signal — other signals are used to
+          characterize <em>why</em> the text changed.
+        </div>
+      </div>
+
+      <div class="method-item">
+        <div class="method-signal">Sentiment Analysis</div>
+        <div class="method-desc">
+          Finance-oriented positive, negative, and uncertainty word ratios derived from the
+          Loughran–McDonald (LM) financial sentiment dictionary. Net tone = positive ratio − negative ratio.
+          A FinBERT-compatible output schema is included as a placeholder for supervised model integration
+          once labeled data is available. The deterministic LM model runs fully offline.
+        </div>
+      </div>
+
+      <div class="method-item">
+        <div class="method-signal">Readability</div>
+        <div class="method-desc">
+          Gunning Fog index, which estimates the years of formal education required to read a passage on
+          first encounter. Index ≥ 12 is college-level; ≥ 17 is graduate-level. Year-over-year increases
+          in Fog index are associated with defensive or legalistic disclosure language — a secondary signal
+          in abnormal change scoring.
+        </div>
+      </div>
+
+      <div class="method-item">
+        <div class="method-signal">Topic Shift</div>
+        <div class="method-desc">
+          TF-IDF keyword extraction identifies the dominant vocabulary cluster for each filing year.
+          Topic shift score is computed as the Jaccard distance between the top-N keyword sets of
+          adjacent years. High topic shift alongside a similarity drop suggests strategic repositioning
+          or an external event introducing new vocabulary (e.g., a product launch, regulatory action,
+          or acquisition).
+        </div>
+      </div>
+
+      <div class="method-item">
+        <div class="method-signal">Abnormal Detection</div>
+        <div class="method-desc">
+          A weighted rule model combining four narrative signals (similarity drop, tone delta,
+          readability delta, topic shift) with two contextual signals (ROA movement, leadership-event
+          proximity). A year is flagged when several moderate signals or one very large narrative
+          signal occur together. Thresholds are intentionally transparent and can be replaced
+          with a statistical or supervised model once labeled data exists.
+          <br /><br />
+          <strong>Scoring weights (current defaults):</strong>
+          similarity drop 35% · tone delta 20% · readability delta 15% · topic shift 20% ·
+          ROA movement 5% · leadership-event proximity 5%.
+        </div>
+      </div>
+
+      <div class="method-item">
+        <div class="method-signal">Event Classification</div>
+        <div class="method-desc">
+          Leadership events (CEO turnover, CFO succession, board changes) are classified by type
+          (planned succession, forced departure, lateral hire, external appointment) and linked to
+          the fiscal year in which they occurred. The model tests whether co-occurrence with
+          narrative abnormality exceeds what would be expected by chance across the sample.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Abnormal logic -->
+    <p class="lab-section-heading">Abnormal Change Decision Logic</p>
+
+    <div style="background: var(--bg-surface); border: 1px solid var(--border); padding: 32px; margin-bottom: 40px;">
+      <p style="font-family: var(--font-mono); font-size: 13px; color: var(--text-secondary); line-height: 2;">
+        FLAG if: similarity_drop &gt; 0.18<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;AND (|Δtone| &gt; 0.010 OR Δfog &gt; 0.5 OR topic_shift &gt; 0.35)<br />
+        OR: similarity_drop &gt; 0.30 (unconditional flag)<br />
+        OR: combined_score &gt; THRESHOLD (default 0.60)
+      </p>
+    </div>
+
+    <!-- Data schema -->
+    <p class="lab-section-heading">Data Schema</p>
+
+    <table class="lab-table" style="margin-bottom: 64px;">
+      <thead>
+        <tr>
+          <th>Entity</th>
+          <th>Key Fields</th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>filings</td>
+          <td>ticker · fiscal_year · section · raw_text</td>
+          <td>EDGAR 10-K</td>
+        </tr>
+        <tr>
+          <td>textual_metrics</td>
+          <td>word_count · net_tone · lm_pos/neg/unc · fog_index · topic_label</td>
+          <td>Computed</td>
+        </tr>
+        <tr>
+          <td>narrative_change</td>
+          <td>cosine_similarity · similarity_drop · Δtone · Δfog · topic_shift · abnormal_flag</td>
+          <td>Computed</td>
+        </tr>
+        <tr>
+          <td>financial_metrics</td>
+          <td>total_assets · roa · revenue_growth</td>
+          <td>S&P Global</td>
+        </tr>
+        <tr>
+          <td>leadership_events</td>
+          <td>event_date · event_type · turnover_type · successor_origin</td>
+          <td>BoardEx / Manual</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div><!-- /container -->
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container-narrow">
+      <p class="footer-line">
+        <a href="../index.html">← Back to blog</a>
+        <span style="margin: 0 20px; opacity: 0.3;">—</span>
+        <a href="mailto:contact@antoinenguyen.io">contact@antoinenguyen.io</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 36), { passive: true });
+  </script>
+
+</body>
+</html>
