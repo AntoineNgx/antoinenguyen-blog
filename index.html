@@ -4,175 +4,170 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Antoine Nguyen</title>
-  <meta name="description" content="10+ years of international enterprise SaaS implementation, data systems, and operational intelligence." />
+  <meta name="description" content="Writing on professional services, data systems, and research." />
 
-  <!-- Inter — geometric sans-serif, loaded as progressive enhancement -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CDN — layout utilities only -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            base:    '#0D1310',
-            surface: '#131A16',
-          }
-        }
-      }
+      theme: { extend: { colors: { base: '#0D1310', surface: '#131A16' } } }
     }
   </script>
 
-  <!-- Design system -->
   <link rel="stylesheet" href="assets/css/styles.css" />
-
-  <!-- Markdown parser -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <style>
-    /* Preload: prevent FOUC before body-reveal animation fires */
-    body { background-color: #0D1310; }
-  </style>
+  <style>body { background-color: #F8F8F6; }</style>
 </head>
 
 <body>
 
   <!-- ================================================================
-       SITE HEADER
-       Sticky · borderless · no background fill · pure typography
+       SITE HEADER — sticky, horizontal
+       ANTOINE NGUYEN on left · nav on right, same baseline
   ================================================================ -->
-  <header class="site-header">
+  <header class="site-header" id="siteHeader">
     <div class="container-wide flex items-center justify-between">
-
-      <!-- Wordmark / text logo -->
       <a href="/" class="wordmark">Antoine Nguyen</a>
-
-      <!-- Sparse text navigation -->
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="#writing">Writing</a>
-        <a href="mailto:contact@antoinenguyen.io">Contact</a>
+        <a href="#" class="nav-filter active" data-filter="all">All</a>
+        <a href="#" class="nav-filter" data-filter="professional">Professional</a>
+        <a href="#" class="nav-filter" data-filter="research">Research</a>
+        <a href="#" class="nav-filter" data-filter="application">Application</a>
+        <a href="#" class="nav-filter" data-filter="about">About</a>
       </nav>
-
     </div>
   </header>
 
 
   <!-- ================================================================
-       HERO
+       MAIN CONTENT — feed + about
   ================================================================ -->
-  <section class="hero">
-    <div class="container-narrow">
+  <div class="main-content" id="mainContent">
 
-      <h1 class="hero-headline">
-        Building and Managing Complex SaaS Implementations<br />
-        through Data &amp; Systems Thinking.
-      </h1>
+    <main class="container-narrow">
+      <div class="feed" id="feed" role="list">
 
-      <p class="hero-sub">
-        <span>Director of Professional Services &mdash; 10+ years of international enterprise execution.</span><br />
-        Hanoi &rarr; Lyon &middot; Financial services &middot; SaaS &middot; Agentic AI
-      </p>
+        <!-- Article 01 -->
+        <article
+          class="feed-item"
+          role="listitem"
+          data-category="professional"
+          data-slug="measuring-the-wrong-thing"
+          tabindex="0"
+          aria-label="Open: The Ghost in the Machine"
+        >
+          <div class="feed-meta">
+            <span class="feed-tag">Professional</span>
+            <span class="feed-date">2026-05-21</span>
+          </div>
+          <div class="feed-title">
+            The Ghost in the Machine — Why Flawless Technical Migrations Fail Post-Go-Live
+          </div>
+          <div class="feed-abstract">
+            Go-live is a technical milestone, not a value milestone. The metrics that predict adoption failure are never the ones on the status dashboard.
+          </div>
+        </article>
 
+        <!-- Forthcoming: Professional -->
+        <article
+          class="feed-item"
+          role="listitem"
+          data-category="professional"
+          tabindex="-1"
+          aria-hidden="true"
+          style="opacity: 0.28; pointer-events: none;"
+        >
+          <div class="feed-meta">
+            <span class="feed-tag">Professional</span>
+            <span class="feed-date">Forthcoming</span>
+          </div>
+          <div class="feed-title">
+            Operationalizing Agentic Pipelines in Regulated Environments
+          </div>
+          <div class="feed-abstract">
+            What breaks when an LLM agent touches a compliance workflow — and how to instrument it before it does.
+          </div>
+        </article>
+
+        <!-- Forthcoming: Research -->
+        <article
+          class="feed-item"
+          role="listitem"
+          data-category="research"
+          tabindex="-1"
+          aria-hidden="true"
+          style="opacity: 0.28; pointer-events: none;"
+        >
+          <div class="feed-meta">
+            <span class="feed-tag">Research</span>
+            <span class="feed-date">Forthcoming</span>
+          </div>
+          <div class="feed-title">
+            Reading the Earnings Call — Narrative Drift as an Early Signal
+          </div>
+          <div class="feed-abstract">
+            Corporate language shift precedes operational deterioration by an average of two quarters. A framework for detection.
+          </div>
+        </article>
+
+      </div><!-- /#feed -->
+    </main>
+
+    <!-- About section (hidden by default, shown when filter=about) -->
+    <div class="about-section hidden" id="aboutSection">
+      <div class="container-narrow">
+        <div class="about-grid">
+
+          <div class="about-row">
+            <span class="about-label">Summary</span>
+            <p class="about-text">
+              Director of Professional Services with 10+ years of international enterprise execution across financial services and SaaS. Based in Lyon, France. Focused on data systems, agentic AI, and operational intelligence.
+            </p>
+          </div>
+
+          <div class="about-row">
+            <span class="about-label">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/antoinenguyen" target="_blank" rel="noopener" class="about-link">
+              linkedin.com/in/antoinenguyen
+            </a>
+          </div>
+
+          <div class="about-row">
+            <span class="about-label">Contact</span>
+            <a href="mailto:contact@antoinenguyen.io" class="about-link">
+              contact@antoinenguyen.io
+            </a>
+          </div>
+
+        </div>
+      </div>
     </div>
-  </section>
+
+  </div><!-- /#mainContent -->
 
 
   <!-- ================================================================
-       FILTER BAR
+       READER SIDEBAR — vertical nav, visible when panel is open
   ================================================================ -->
-  <div class="container-narrow">
-    <div class="filter-bar" id="writing" role="toolbar" aria-label="Filter articles">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="saas-migration">SaaS Migration</button>
-      <button class="filter-btn" data-filter="agentic-ai">Agentic AI</button>
-      <button class="filter-btn" data-filter="textual-analysis">Textual Analysis</button>
-    </div>
+  <div class="reader-sidebar" id="readerSidebar" aria-hidden="true">
+    <a href="/" class="wordmark sidebar-wordmark" id="sidebarWordmark">Antoine Nguyen</a>
+    <nav class="sidebar-nav" aria-label="Sidebar navigation">
+      <a href="#" class="sidebar-filter active" data-filter="all">All</a>
+      <a href="#" class="sidebar-filter" data-filter="professional">Professional</a>
+      <a href="#" class="sidebar-filter" data-filter="research">Research</a>
+      <a href="#" class="sidebar-filter" data-filter="application">Application</a>
+      <a href="#" class="sidebar-filter" data-filter="about">About</a>
+    </nav>
   </div>
 
 
   <!-- ================================================================
-       ARTICLE FEED
-       Single-column vertical stack.
-       Negative space structures the list — not dividers.
+       READER PANEL — 3/4 width on right
   ================================================================ -->
-  <main class="container-narrow">
-    <div class="feed" id="feed" role="list">
-
-      <!-- ── Article 01 ── -->
-      <article
-        class="feed-item"
-        role="listitem"
-        data-category="saas-migration"
-        data-slug="measuring-the-wrong-thing"
-        tabindex="0"
-        aria-label="Open: The Ghost in the Machine"
-      >
-        <div class="feed-meta">
-          <span class="feed-tag">SaaS Migration</span>
-          <span class="feed-date">2026-05-21</span>
-        </div>
-        <div class="feed-title">
-          The Ghost in the Machine — Why Flawless Technical Migrations Fail Post-Go-Live
-        </div>
-        <div class="feed-abstract">
-          Go-live is a technical milestone, not a value milestone. The metrics that predict adoption failure are never the ones on the status dashboard.
-        </div>
-      </article>
-
-      <!-- ── Forthcoming: Agentic AI ── -->
-      <article
-        class="feed-item"
-        role="listitem"
-        data-category="agentic-ai"
-        tabindex="-1"
-        aria-hidden="true"
-        style="opacity: 0.28; pointer-events: none;"
-      >
-        <div class="feed-meta">
-          <span class="feed-tag">Agentic AI</span>
-          <span class="feed-date">Forthcoming</span>
-        </div>
-        <div class="feed-title">
-          Operationalizing Agentic Pipelines in Regulated Environments
-        </div>
-        <div class="feed-abstract">
-          What breaks when an LLM agent touches a compliance workflow — and how to instrument it before it does.
-        </div>
-      </article>
-
-      <!-- ── Forthcoming: Textual Analysis ── -->
-      <article
-        class="feed-item"
-        role="listitem"
-        data-category="textual-analysis"
-        tabindex="-1"
-        aria-hidden="true"
-        style="opacity: 0.28; pointer-events: none;"
-      >
-        <div class="feed-meta">
-          <span class="feed-tag">Textual Analysis</span>
-          <span class="feed-date">Forthcoming</span>
-        </div>
-        <div class="feed-title">
-          Reading the Earnings Call — Narrative Drift as an Early Signal
-        </div>
-        <div class="feed-abstract">
-          Corporate language shift precedes operational deterioration by an average of two quarters. A framework for detection.
-        </div>
-      </article>
-
-    </div><!-- /#feed -->
-  </main>
-
-
-  <!-- ================================================================
-       READER PANEL — slide-in article viewer
-  ================================================================ -->
-  <div class="reader-overlay" id="readerOverlay" aria-hidden="true"></div>
-
   <aside
     class="reader-panel"
     id="readerPanel"
@@ -180,14 +175,33 @@
     aria-label="Article reader"
     aria-hidden="true"
   >
-    <div class="reader-inner">
-      <button class="reader-close" id="readerClose" aria-label="Close article">
-        Close
-      </button>
-      <div class="prose" id="readerContent">
-        <!-- Markdown-rendered article injected here at runtime -->
+
+    <!-- Full-page header (horizontal, shown only in fullpage mode) -->
+    <div class="reader-fp-header" id="readerFpHeader">
+      <div class="container-wide flex items-center justify-between">
+        <a href="/" class="wordmark" id="fpWordmark">Antoine Nguyen</a>
+        <nav class="site-nav" aria-label="Fullpage navigation">
+          <a href="#" class="fp-filter" data-filter="all">All</a>
+          <a href="#" class="fp-filter" data-filter="professional">Professional</a>
+          <a href="#" class="fp-filter" data-filter="research">Research</a>
+          <a href="#" class="fp-filter" data-filter="application">Application</a>
+          <a href="#" class="fp-filter" data-filter="about">About</a>
+        </nav>
       </div>
     </div>
+
+    <!-- Toolbar: close + expand -->
+    <div class="reader-toolbar">
+      <button class="reader-close" id="readerClose" aria-label="Close article">← Close</button>
+      <button class="reader-expand" id="readerExpand" aria-label="Expand to full page">Full Page ↗</button>
+    </div>
+
+    <div class="reader-inner">
+      <div class="prose" id="readerContent">
+        <!-- Article content injected at runtime -->
+      </div>
+    </div>
+
   </aside>
 
 
@@ -197,10 +211,7 @@
   <footer class="site-footer">
     <div class="container-narrow">
       <p class="footer-line">
-        Inquiries:
         <a href="mailto:contact@antoinenguyen.io">contact@antoinenguyen.io</a>
-        <span class="footer-separator">&mdash;</span>
-        Confidential Expert Repository
       </p>
     </div>
   </footer>
@@ -210,67 +221,103 @@
        SCRIPTS
   ================================================================ -->
   <script>
-    /* ------------------------------------------------------------------
-       Scroll-based header: transparent at rest → frosted on scroll
-    ------------------------------------------------------------------ */
-    const header = document.querySelector('.site-header');
+    /* Scroll-based header shadow */
+    const header = document.getElementById('siteHeader');
     window.addEventListener('scroll', () => {
       header.classList.toggle('scrolled', window.scrollY > 36);
     }, { passive: true });
 
-    /* ------------------------------------------------------------------
-       Posts registry
-       Add new entries as content/[slug].md files are created.
-    ------------------------------------------------------------------ */
+    /* Posts registry */
     const POSTS = {
       'measuring-the-wrong-thing': 'content/measuring-the-wrong-thing.md',
     };
-
-    /* Post metadata for the reader meta line */
     const POST_META = {
-      'measuring-the-wrong-thing': {
-        date: '2026-05-21',
-        category: 'SaaS Migration',
-        readTime: '8 min',
-      },
+      'measuring-the-wrong-thing': { date: '2026-05-21', category: 'Professional', readTime: '8 min' },
     };
 
-    /* ------------------------------------------------------------------
-       Reader panel
-    ------------------------------------------------------------------ */
-    const overlay    = document.getElementById('readerOverlay');
-    const panel      = document.getElementById('readerPanel');
-    const closeBtn   = document.getElementById('readerClose');
-    const readerBody = document.getElementById('readerContent');
+    /* State */
+    let currentFilter = 'all';
+    let isFullpage = false;
 
+    /* Elements */
+    const panel      = document.getElementById('readerPanel');
+    const sidebar    = document.getElementById('readerSidebar');
+    const closeBtn   = document.getElementById('readerClose');
+    const expandBtn  = document.getElementById('readerExpand');
+    const readerBody = document.getElementById('readerContent');
+    const feedEl     = document.getElementById('feed');
+    const aboutEl    = document.getElementById('aboutSection');
+
+    /* ── Filter ── */
+    function applyFilter(filter) {
+      currentFilter = filter;
+
+      document.querySelectorAll('.nav-filter, .sidebar-filter, .fp-filter').forEach(el => {
+        el.classList.toggle('active', el.dataset.filter === filter);
+      });
+
+      if (filter === 'about') {
+        feedEl.classList.add('hidden');
+        aboutEl.classList.remove('hidden');
+      } else {
+        feedEl.classList.remove('hidden');
+        aboutEl.classList.add('hidden');
+        document.querySelectorAll('.feed-item[data-category]').forEach(item => {
+          const show = filter === 'all' || item.dataset.category === filter;
+          item.classList.toggle('hidden', !show);
+        });
+      }
+    }
+
+    document.querySelectorAll('.nav-filter').forEach(btn => {
+      btn.addEventListener('click', e => { e.preventDefault(); applyFilter(btn.dataset.filter); });
+    });
+
+    document.querySelectorAll('.sidebar-filter').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        closeReader();
+        applyFilter(btn.dataset.filter);
+      });
+    });
+
+    document.querySelectorAll('.fp-filter').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        closeReader();
+        applyFilter(btn.dataset.filter);
+      });
+    });
+
+    document.getElementById('sidebarWordmark').addEventListener('click', e => {
+      e.preventDefault(); closeReader();
+    });
+    document.getElementById('fpWordmark').addEventListener('click', e => {
+      e.preventDefault(); closeReader();
+    });
+
+    /* ── Reader open / close ── */
     function openReader(slug) {
       const path = POSTS[slug];
       if (!path) return;
 
-      readerBody.innerHTML =
-        '<p style="font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);">Loading&hellip;</p>';
+      readerBody.innerHTML = '<p class="reader-loading">Loading&hellip;</p>';
 
-      overlay.classList.add('open');
       panel.classList.add('open');
-      overlay.setAttribute('aria-hidden', 'false');
       panel.setAttribute('aria-hidden', 'false');
+      sidebar.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('panel-open');
       document.body.style.overflow = 'hidden';
 
       fetch(path)
-        .then(r => {
-          if (!r.ok) throw new Error('Not found');
-          return r.text();
-        })
+        .then(r => { if (!r.ok) throw new Error(); return r.text(); })
         .then(md => {
-          /* Strip inline metadata lines */
           const cleaned = md
             .replace(/^\*\*Category:.*$/gm, '')
             .replace(/^\*\*Published:.*$/gm, '')
             .replace(/^\*\*Reading time:.*$/gm, '');
-
           readerBody.innerHTML = marked.parse(cleaned);
 
-          /* Inject meta line directly under h1 */
           const h1 = readerBody.querySelector('h1');
           if (h1 && POST_META[slug]) {
             const { date, category, readTime } = POST_META[slug];
@@ -279,54 +326,39 @@
             meta.textContent = `${date}  ·  ${category}  ·  ${readTime} read`;
             h1.insertAdjacentElement('afterend', meta);
           }
-
-          /* Scroll reader to top on each open */
           panel.scrollTop = 0;
         })
         .catch(() => {
-          readerBody.innerHTML =
-            '<p style="color:var(--text-muted);font-size:13px;">Content unavailable. Ensure the site is served over HTTP.</p>';
+          readerBody.innerHTML = '<p style="color:var(--text-muted);font-size:13px;">Content unavailable. Serve the site over HTTP.</p>';
         });
     }
 
     function closeReader() {
-      overlay.classList.remove('open');
       panel.classList.remove('open');
-      overlay.setAttribute('aria-hidden', 'true');
       panel.setAttribute('aria-hidden', 'true');
+      sidebar.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('panel-open', 'reader-fullpage');
       document.body.style.overflow = '';
+      isFullpage = false;
+      expandBtn.textContent = 'Full Page ↗';
+    }
+
+    function toggleFullpage() {
+      isFullpage = !isFullpage;
+      document.body.classList.toggle('reader-fullpage', isFullpage);
+      expandBtn.textContent = isFullpage ? '← Panel View' : 'Full Page ↗';
+      panel.scrollTop = 0;
     }
 
     closeBtn.addEventListener('click', closeReader);
-    overlay.addEventListener('click', closeReader);
+    expandBtn.addEventListener('click', toggleFullpage);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeReader(); });
 
-    /* ------------------------------------------------------------------
-       Feed: click + keyboard open
-    ------------------------------------------------------------------ */
+    /* Feed item click */
     document.querySelectorAll('.feed-item[data-slug]').forEach(item => {
       item.addEventListener('click', () => openReader(item.dataset.slug));
       item.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          openReader(item.dataset.slug);
-        }
-      });
-    });
-
-    /* ------------------------------------------------------------------
-       Filter bar
-    ------------------------------------------------------------------ */
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const filter = btn.dataset.filter;
-        document.querySelectorAll('.feed-item[data-category]').forEach(item => {
-          const match = filter === 'all' || item.dataset.category === filter;
-          item.classList.toggle('hidden', !match);
-        });
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openReader(item.dataset.slug); }
       });
     });
   </script>
