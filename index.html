@@ -282,7 +282,9 @@
       btn.addEventListener('click', e => { e.preventDefault(); applyFilter(btn.dataset.filter); });
     });
 
-    document.querySelectorAll('.sidebar-filter').forEach(btn => {
+    /* Only intercept sidebar items that are feed filters (have data-filter).
+       The APPLICATION link has no data-filter and must navigate freely. */
+    document.querySelectorAll('.sidebar-filter[data-filter]').forEach(btn => {
       btn.addEventListener('click', e => {
         e.preventDefault();
         closeReader();

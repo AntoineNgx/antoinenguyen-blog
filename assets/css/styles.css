@@ -555,6 +555,16 @@ body.reader-fullpage .reader-inner {
 .nav-dropdown-container:hover .chevron,
 .nav-dropdown-container.open .chevron { transform: rotate(180deg); }
 
+/* Invisible bridge fills the gap so hover isn't lost moving mouse down */
+.nav-dropdown-container::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -12px;
+  right: -12px;
+  height: 22px;
+}
+
 .nav-dropdown {
   position: absolute;
   top: calc(100% + 18px);
