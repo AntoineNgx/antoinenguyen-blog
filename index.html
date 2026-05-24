@@ -3,33 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Antoine Nguyen — Expert Repository</title>
-  <meta name="description" content="10+ years of enterprise SaaS implementation, data systems, and operational intelligence. Confidential expert repository." />
+  <title>Antoine Nguyen</title>
+  <meta name="description" content="10+ years of international enterprise SaaS implementation, data systems, and operational intelligence." />
 
-  <!-- Fonts -->
+  <!-- Inter — geometric sans-serif, loaded as progressive enhancement -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CDN (utility resets + layout helpers) -->
+  <!-- Tailwind CDN — layout utilities only -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            base:    '#0B0F19',
-            surface: '#111827',
+            base:    '#0D1310',
+            surface: '#131A16',
           }
         }
       }
     }
   </script>
 
-  <!-- Custom design system -->
+  <!-- Design system -->
   <link rel="stylesheet" href="assets/css/styles.css" />
 
-  <!-- marked.js — lightweight Markdown parser -->
+  <!-- Markdown parser -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 
@@ -37,17 +37,20 @@
 
   <!-- ================================================================
        SITE HEADER
+       Sticky · borderless · no background fill · pure typography
   ================================================================ -->
   <header class="site-header">
     <div class="container-wide flex items-center justify-between">
-      <span class="wordmark">Antoine Nguyen / Expert Repository</span>
-      <nav>
-        <a
-          href="mailto:contact@antoinenguyen.io"
-          class="font-mono text-xs text-gray-600 uppercase tracking-widest hover:text-gray-300 transition-colors"
-          style="font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;"
-        >Inquiries</a>
+
+      <!-- Wordmark / text logo -->
+      <a href="/" class="wordmark">Antoine Nguyen</a>
+
+      <!-- Sparse text navigation -->
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#writing">Writing</a>
+        <a href="mailto:contact@antoinenguyen.io">Contact</a>
       </nav>
+
     </div>
   </header>
 
@@ -57,13 +60,17 @@
   ================================================================ -->
   <section class="hero">
     <div class="container-narrow">
+
       <h1 class="hero-headline">
-        Building and Managing Complex SaaS Implementations through Data &amp; Systems Thinking.
+        Building and Managing Complex SaaS Implementations<br />
+        through Data &amp; Systems Thinking.
       </h1>
+
       <p class="hero-sub">
         <span>Director of Professional Services &mdash; 10+ years of international enterprise execution.</span><br />
-        Deployments across APAC and EMEA markets &middot; Hanoi &rarr; Lyon &middot; Financial services, SaaS, agentic AI.
+        Hanoi &rarr; Lyon &middot; Financial services &middot; SaaS &middot; Agentic AI
       </p>
+
     </div>
   </section>
 
@@ -72,74 +79,83 @@
        FILTER BAR
   ================================================================ -->
   <div class="container-narrow">
-    <div class="filter-bar" role="toolbar" aria-label="Filter articles">
-      <button class="filter-btn active" data-filter="all">[ All ]</button>
-      <button class="filter-btn" data-filter="saas-migration">[ SaaS Migration ]</button>
-      <button class="filter-btn" data-filter="agentic-ai">[ Agentic AI ]</button>
-      <button class="filter-btn" data-filter="textual-analysis">[ Textual Analysis ]</button>
+    <div class="filter-bar" id="writing" role="toolbar" aria-label="Filter articles">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="saas-migration">SaaS Migration</button>
+      <button class="filter-btn" data-filter="agentic-ai">Agentic AI</button>
+      <button class="filter-btn" data-filter="textual-analysis">Textual Analysis</button>
     </div>
   </div>
 
 
   <!-- ================================================================
        ARTICLE FEED
+       Single-column vertical stack.
+       Negative space structures the list — not dividers.
   ================================================================ -->
   <main class="container-narrow">
     <div class="feed" id="feed" role="list">
 
-      <!-- Article 01 -->
+      <!-- ── Article 01 ── -->
       <article
         class="feed-item"
         role="listitem"
         data-category="saas-migration"
         data-slug="measuring-the-wrong-thing"
         tabindex="0"
-        aria-label="Open article: The Ghost in the Machine"
+        aria-label="Open: The Ghost in the Machine"
       >
-        <div>
-          <div class="feed-date">2026-05-21</div>
-          <div class="feed-tag">SaaS Migration</div>
+        <div class="feed-meta">
+          <span class="feed-tag">SaaS Migration</span>
+          <span class="feed-date">2026-05-21</span>
         </div>
-        <div class="feed-body">
-          <div class="feed-title">The Ghost in the Machine: Why Flawless Technical Migrations Fail Post-Go-Live</div>
-          <div class="feed-abstract">Go-live is a technical milestone, not a value milestone — the metrics that predict adoption failure are never the ones on the status dashboard.</div>
+        <div class="feed-title">
+          The Ghost in the Machine — Why Flawless Technical Migrations Fail Post-Go-Live
+        </div>
+        <div class="feed-abstract">
+          Go-live is a technical milestone, not a value milestone. The metrics that predict adoption failure are never the ones on the status dashboard.
         </div>
       </article>
 
-      <!-- Placeholder stubs — extend as content grows -->
+      <!-- ── Forthcoming: Agentic AI ── -->
       <article
         class="feed-item"
         role="listitem"
         data-category="agentic-ai"
-        tabindex="0"
-        aria-label="Coming soon"
-        style="opacity:0.3; pointer-events:none;"
+        tabindex="-1"
+        aria-hidden="true"
+        style="opacity: 0.28; pointer-events: none;"
       >
-        <div>
-          <div class="feed-date">Forthcoming</div>
-          <div class="feed-tag">Agentic AI</div>
+        <div class="feed-meta">
+          <span class="feed-tag">Agentic AI</span>
+          <span class="feed-date">Forthcoming</span>
         </div>
-        <div class="feed-body">
-          <div class="feed-title">Operationalizing Agentic Pipelines in Regulated Environments</div>
-          <div class="feed-abstract">What breaks when an LLM agent touches a compliance workflow — and how to instrument it before it does.</div>
+        <div class="feed-title">
+          Operationalizing Agentic Pipelines in Regulated Environments
+        </div>
+        <div class="feed-abstract">
+          What breaks when an LLM agent touches a compliance workflow — and how to instrument it before it does.
         </div>
       </article>
 
+      <!-- ── Forthcoming: Textual Analysis ── -->
       <article
         class="feed-item"
         role="listitem"
         data-category="textual-analysis"
-        tabindex="0"
-        aria-label="Coming soon"
-        style="opacity:0.3; pointer-events:none;"
+        tabindex="-1"
+        aria-hidden="true"
+        style="opacity: 0.28; pointer-events: none;"
       >
-        <div>
-          <div class="feed-date">Forthcoming</div>
-          <div class="feed-tag">Textual Analysis</div>
+        <div class="feed-meta">
+          <span class="feed-tag">Textual Analysis</span>
+          <span class="feed-date">Forthcoming</span>
         </div>
-        <div class="feed-body">
-          <div class="feed-title">Reading the Earnings Call: Narrative Drift as an Early Signal</div>
-          <div class="feed-abstract">Corporate language shift precedes operational deterioration by an average of two quarters. A framework for detection.</div>
+        <div class="feed-title">
+          Reading the Earnings Call — Narrative Drift as an Early Signal
+        </div>
+        <div class="feed-abstract">
+          Corporate language shift precedes operational deterioration by an average of two quarters. A framework for detection.
         </div>
       </article>
 
@@ -148,15 +164,23 @@
 
 
   <!-- ================================================================
-       READER PANEL (slide-in article viewer)
+       READER PANEL — slide-in article viewer
   ================================================================ -->
   <div class="reader-overlay" id="readerOverlay" aria-hidden="true"></div>
 
-  <aside class="reader-panel" id="readerPanel" role="complementary" aria-label="Article reader" aria-hidden="true">
+  <aside
+    class="reader-panel"
+    id="readerPanel"
+    role="complementary"
+    aria-label="Article reader"
+    aria-hidden="true"
+  >
     <div class="reader-inner">
-      <button class="reader-close" id="readerClose" aria-label="Close article">&#x2190; Close</button>
+      <button class="reader-close" id="readerClose" aria-label="Close article">
+        Close
+      </button>
       <div class="prose" id="readerContent">
-        <!-- Markdown-rendered article injected here -->
+        <!-- Markdown-rendered article injected here at runtime -->
       </div>
     </div>
   </aside>
@@ -168,7 +192,8 @@
   <footer class="site-footer">
     <div class="container-narrow">
       <p class="footer-line">
-        Inquiries: <a href="mailto:contact@antoinenguyen.io">contact@antoinenguyen.io</a>
+        Inquiries:
+        <a href="mailto:contact@antoinenguyen.io">contact@antoinenguyen.io</a>
         <span class="footer-separator">&mdash;</span>
         Confidential Expert Repository
       </p>
@@ -180,14 +205,26 @@
        SCRIPTS
   ================================================================ -->
   <script>
-    /* ---------- Markdown posts registry ----------
-       Add new entries here as content/[slug].md files are created.
-    */
+    /* ------------------------------------------------------------------
+       Posts registry
+       Add new entries as content/[slug].md files are created.
+    ------------------------------------------------------------------ */
     const POSTS = {
-      'measuring-the-wrong-thing': 'content/measuring-the-wrong-thing.md'
+      'measuring-the-wrong-thing': 'content/measuring-the-wrong-thing.md',
     };
 
-    /* ---------- Reader panel ---------- */
+    /* Post metadata for the reader meta line */
+    const POST_META = {
+      'measuring-the-wrong-thing': {
+        date: '2026-05-21',
+        category: 'SaaS Migration',
+        readTime: '8 min',
+      },
+    };
+
+    /* ------------------------------------------------------------------
+       Reader panel
+    ------------------------------------------------------------------ */
     const overlay    = document.getElementById('readerOverlay');
     const panel      = document.getElementById('readerPanel');
     const closeBtn   = document.getElementById('readerClose');
@@ -197,7 +234,9 @@
       const path = POSTS[slug];
       if (!path) return;
 
-      readerBody.innerHTML = '<p style="font-family:var(--font-mono);font-size:11px;color:var(--text-muted);letter-spacing:0.06em;">Loading&hellip;</p>';
+      readerBody.innerHTML =
+        '<p style="font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);">Loading&hellip;</p>';
+
       overlay.classList.add('open');
       panel.classList.add('open');
       overlay.setAttribute('aria-hidden', 'false');
@@ -210,23 +249,30 @@
           return r.text();
         })
         .then(md => {
-          /* Strip YAML-style metadata lines at the top */
-          const cleaned = md.replace(/^\*\*Category:.*$/gm, '')
-                            .replace(/^\*\*Published:.*$/gm, '')
-                            .replace(/^\*\*Reading time:.*$/gm, '');
+          /* Strip inline metadata lines */
+          const cleaned = md
+            .replace(/^\*\*Category:.*$/gm, '')
+            .replace(/^\*\*Published:.*$/gm, '')
+            .replace(/^\*\*Reading time:.*$/gm, '');
+
           readerBody.innerHTML = marked.parse(cleaned);
 
-          /* Inject meta line below h1 */
+          /* Inject meta line directly under h1 */
           const h1 = readerBody.querySelector('h1');
-          if (h1) {
+          if (h1 && POST_META[slug]) {
+            const { date, category, readTime } = POST_META[slug];
             const meta = document.createElement('div');
             meta.className = 'meta-line';
-            meta.textContent = '2026-05-21  ·  SaaS Migration  ·  8 min read';
+            meta.textContent = `${date}  ·  ${category}  ·  ${readTime} read`;
             h1.insertAdjacentElement('afterend', meta);
           }
+
+          /* Scroll reader to top on each open */
+          panel.scrollTop = 0;
         })
         .catch(() => {
-          readerBody.innerHTML = '<p style="color:var(--text-muted);">Content unavailable. Ensure the site is served over HTTP.</p>';
+          readerBody.innerHTML =
+            '<p style="color:var(--text-muted);font-size:13px;">Content unavailable. Ensure the site is served over HTTP.</p>';
         });
     }
 
@@ -240,12 +286,11 @@
 
     closeBtn.addEventListener('click', closeReader);
     overlay.addEventListener('click', closeReader);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeReader(); });
 
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeReader();
-    });
-
-    /* ---------- Feed item click / keyboard ---------- */
+    /* ------------------------------------------------------------------
+       Feed: click + keyboard open
+    ------------------------------------------------------------------ */
     document.querySelectorAll('.feed-item[data-slug]').forEach(item => {
       item.addEventListener('click', () => openReader(item.dataset.slug));
       item.addEventListener('keydown', e => {
@@ -256,7 +301,9 @@
       });
     });
 
-    /* ---------- Filter ---------- */
+    /* ------------------------------------------------------------------
+       Filter bar
+    ------------------------------------------------------------------ */
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -264,11 +311,8 @@
 
         const filter = btn.dataset.filter;
         document.querySelectorAll('.feed-item[data-category]').forEach(item => {
-          if (filter === 'all' || item.dataset.category === filter) {
-            item.classList.remove('hidden');
-          } else {
-            item.classList.add('hidden');
-          }
+          const match = filter === 'all' || item.dataset.category === filter;
+          item.classList.toggle('hidden', !match);
         });
       });
     });

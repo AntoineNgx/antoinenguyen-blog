@@ -1,22 +1,38 @@
 /* ============================================================
-   Portfolio — Custom overrides on top of Tailwind
-   Design system: dark, document-grade, zero noise
+   Design System — Forestry Minimalist
+   Palette: deep moody green canvas + architectural typography
+   Model: James Clear layout × Benjamin Hardman editorial mood
    ============================================================ */
 
+/* ---- Custom properties ---- */
 :root {
-  --bg-base:       #0B0F19;
-  --bg-surface:    #111827;
-  --border:        #1F2937;
-  --text-primary:  #FFFFFF;
-  --text-secondary:#9CA3AF;
-  --text-muted:    #4B5563;
-  --accent:        #F9FAFB;
-  --font-sans:     'Inter', 'SF Pro Display', system-ui, -apple-system, sans-serif;
-  --font-mono:     'Roboto Mono', 'Fira Code', monospace;
+  /* Canvas */
+  --bg-base:       #0D1310;
+  --bg-surface:    #131A16;
+
+  /* Borders — ultra-faint green-tinted charcoal */
+  --border:        #1C2420;
+
+  /* Text */
+  --text-primary:  #F4F6F4;   /* crisp off-white / pale linen */
+  --text-secondary:#8A968F;   /* pale moss / slate-green      */
+  --text-muted:    #526057;   /* deep muted sage              */
+
+  /* Accent */
+  --accent:        #A3B1A6;   /* light sage — hover / links   */
+  --accent-dim:    #3E5446;   /* desaturated leaf green       */
+
+  /* Typography */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, Inter, sans-serif;
+  --font-mono: 'Roboto Mono', 'Fira Code', monospace;
+
+  /* Spacing rhythm */
+  --feed-gap: 56px;
 }
 
-/* Base reset */
-*, *::before, *::after { box-sizing: border-box; }
+/* ---- Base reset ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { scroll-behavior: smooth; }
 
@@ -25,185 +41,257 @@ body {
   color: var(--text-secondary);
   font-family: var(--font-sans);
   font-size: 15px;
+  font-weight: 400;
   line-height: 1.7;
+  letter-spacing: 0.02em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ---- Typography ---- */
+/* ---- Global heading scale
+   Hardman model: uppercase · light weight · wide tracking ---- */
 h1, h2, h3, h4, h5 {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  line-height: 1.2;
   color: var(--text-primary);
-  font-weight: 600;
-  letter-spacing: -0.02em;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+  transition: color 0.18s;
 }
 
 /* ---- Layout containers ---- */
 .container-narrow {
-  max-width: 720px;
+  max-width: 700px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 28px;
 }
 
 .container-wide {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 28px;
 }
 
-/* ---- Site header / nav ---- */
+/* ================================================================
+   SITE HEADER
+   — Borderless, backgroundless, pure typographic bar
+================================================================ */
 .site-header {
-  border-bottom: 1px solid var(--border);
-  padding: 20px 0;
+  /* No border. No background fill. No box-shadow. */
+  padding: 28px 0;
   position: sticky;
   top: 0;
-  background-color: var(--bg-base);
+  /* Barely-there backdrop so it stays legible when scrolled over content */
+  background-color: rgba(13, 19, 16, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: 100;
 }
 
 .site-header .wordmark {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.site-nav {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.site-nav a {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
 
-/* ---- Hero ---- */
+.site-nav a:hover {
+  color: var(--accent);
+}
+
+/* ================================================================
+   HERO
+================================================================ */
 .hero {
-  padding: 80px 0 64px;
-  border-bottom: 1px solid var(--border);
+  padding: 96px 0 72px;
 }
 
 .hero-headline {
-  font-size: clamp(22px, 3vw, 32px);
-  font-weight: 600;
+  font-family: var(--font-sans);
+  font-size: clamp(20px, 2.8vw, 28px);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
   color: var(--text-primary);
-  letter-spacing: -0.03em;
-  line-height: 1.25;
-  max-width: 620px;
-  margin-bottom: 20px;
+  max-width: 640px;
+  margin-bottom: 28px;
 }
 
 .hero-sub {
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 400;
   color: var(--text-muted);
-  font-family: var(--font-mono);
-  letter-spacing: 0.02em;
-  line-height: 1.6;
-  max-width: 560px;
+  letter-spacing: 0.06em;
+  line-height: 1.7;
+  max-width: 520px;
+  text-transform: uppercase;
 }
 
 .hero-sub span {
   color: var(--text-secondary);
 }
 
-/* ---- Filter bar ---- */
+/* ================================================================
+   FILTER BAR
+================================================================ */
 .filter-bar {
-  padding: 28px 0;
-  border-bottom: 1px solid var(--border);
+  padding: 40px 0 36px;
   display: flex;
-  gap: 4px;
+  gap: 0;
   flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
 }
 
 .filter-btn {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-muted);
-  padding: 5px 12px;
-  border: 1px solid transparent;
+  padding: 6px 16px 6px 0;
+  margin-right: 16px;
+  border: none;
   cursor: pointer;
   background: none;
-  transition: color 0.15s, border-color 0.15s;
+  transition: color 0.18s;
+  /* Underline as active indicator — no box borders */
+  border-bottom: 1px solid transparent;
 }
 
-.filter-btn:hover,
+.filter-btn:hover {
+  color: var(--accent);
+}
+
 .filter-btn.active {
   color: var(--text-primary);
-  border-color: var(--border);
+  border-bottom-color: var(--accent-dim);
 }
 
-.filter-btn.active {
-  color: var(--text-secondary);
-  border-color: #374151;
-}
-
-/* ---- Article feed ---- */
+/* ================================================================
+   ARTICLE FEED
+   — Vertical stack. Negative space does the dividing, not lines.
+================================================================ */
 .feed {
-  padding: 0;
+  padding-top: 16px;
 }
 
 .feed-item {
-  padding: 28px 0;
-  border-bottom: 1px solid var(--border);
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 24px;
+  /* Single column. Generous top/bottom padding = the only separator. */
+  padding: var(--feed-gap) 0;
   cursor: pointer;
-  transition: opacity 0.15s;
+  transition: opacity 0.2s;
+  /* Hairline bottom rule only — ultra faint */
+  border-bottom: 1px solid var(--border);
 }
 
-.feed-item:hover { opacity: 0.75; }
+.feed-item:first-child {
+  padding-top: 40px;
+}
 
-.feed-item:hover .feed-title { text-decoration: underline; text-decoration-color: var(--border); }
+.feed-item:last-child {
+  border-bottom: none;
+}
 
-.feed-item.hidden { display: none; }
+.feed-item:hover {
+  opacity: 0.72;
+}
 
-.feed-date {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  color: var(--text-muted);
-  padding-top: 3px;
-  white-space: nowrap;
+.feed-item.hidden {
+  display: none;
+}
+
+/* Meta row: category tag + date on one line */
+.feed-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
 }
 
 .feed-tag {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-dim);
+}
+
+.feed-date {
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--text-muted);
-  margin-top: 6px;
 }
 
-.feed-body {}
-
+/* Title: primary click target — Hardman uppercase architectural style */
 .feed-title {
+  font-family: var(--font-sans);
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
   color: var(--text-primary);
-  margin-bottom: 6px;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+  transition: color 0.18s;
 }
 
+.feed-item:hover .feed-title {
+  color: var(--accent);
+}
+
+/* Abstract: single sentence, truncated to one line */
 .feed-abstract {
   font-size: 13px;
+  font-weight: 400;
   color: var(--text-muted);
-  line-height: 1.55;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
   max-width: 580px;
-  white-space: nowrap;
+  /* Allow wrapping — the design is generous enough */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-/* ---- Article reader panel ---- */
+/* ================================================================
+   READER PANEL
+================================================================ */
 .reader-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(6, 9, 7, 0.72);
   z-index: 200;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.2s;
+  transition: opacity 0.22s;
 }
 
 .reader-overlay.open {
@@ -221,7 +309,7 @@ a {
   border-left: 1px solid var(--border);
   overflow-y: auto;
   transform: translateX(100%);
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 201;
 }
 
@@ -230,69 +318,81 @@ a {
 }
 
 .reader-inner {
-  padding: 48px 48px 80px;
+  padding: 52px 52px 100px;
 }
 
 .reader-close {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-muted);
   background: none;
-  border: 1px solid var(--border);
-  padding: 6px 14px;
+  border: none;
+  padding: 0;
   cursor: pointer;
-  margin-bottom: 40px;
-  display: inline-block;
-  transition: color 0.15s, border-color 0.15s;
+  margin-bottom: 52px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.18s;
+}
+
+.reader-close::before {
+  content: '←';
+  font-size: 12px;
 }
 
 .reader-close:hover {
-  color: var(--text-primary);
-  border-color: #374151;
+  color: var(--accent);
 }
 
-/* Article prose */
-.prose { max-width: 600px; }
+/* ---- Article prose (reader) ---- */
+.prose {
+  max-width: 580px;
+}
 
 .prose h1 {
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 1.25;
-  letter-spacing: -0.03em;
-  margin-bottom: 24px;
+  font-size: 18px;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  line-height: 1.4;
   color: var(--text-primary);
+  margin-bottom: 20px;
 }
 
 .prose h2 {
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin: 40px 0 16px;
-  font-family: var(--font-mono);
+  margin: 48px 0 20px;
 }
 
 .prose h3 {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 28px 0 10px;
-  letter-spacing: -0.01em;
+  font-size: 13px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+  margin: 32px 0 12px;
 }
 
 .prose p {
   font-size: 14px;
+  font-weight: 400;
   line-height: 1.75;
+  letter-spacing: 0.02em;
   color: var(--text-secondary);
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .prose strong {
   color: var(--text-primary);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .prose em {
@@ -300,90 +400,96 @@ a {
   color: var(--text-muted);
 }
 
-.prose ul, .prose ol {
+.prose ul,
+.prose ol {
   padding-left: 20px;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .prose li {
   font-size: 14px;
-  line-height: 1.7;
+  line-height: 1.75;
+  letter-spacing: 0.02em;
   color: var(--text-secondary);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .prose hr {
   border: none;
   border-top: 1px solid var(--border);
-  margin: 36px 0;
+  margin: 44px 0;
 }
 
 .prose blockquote {
-  border-left: 2px solid var(--border);
-  padding-left: 20px;
-  margin: 24px 0;
+  border-left: 1px solid var(--accent-dim);
+  padding-left: 24px;
+  margin: 28px 0;
   color: var(--text-muted);
-  font-style: italic;
 }
 
 .prose code {
   font-family: var(--font-mono);
   font-size: 12px;
-  background: #1a2236;
-  padding: 2px 6px;
+  background: rgba(62, 84, 70, 0.18);
+  padding: 2px 7px;
   border-radius: 2px;
-  color: var(--text-secondary);
+  color: var(--accent);
+  letter-spacing: 0;
 }
 
 .prose .meta-line {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--text-muted);
-  letter-spacing: 0.04em;
-  margin-bottom: 32px;
-  padding-bottom: 24px;
+  margin-bottom: 40px;
+  padding-bottom: 28px;
   border-bottom: 1px solid var(--border);
 }
 
-/* ---- Footer ---- */
+/* ================================================================
+   FOOTER
+================================================================ */
 .site-footer {
-  padding: 40px 0;
+  padding: 48px 0 56px;
   border-top: 1px solid var(--border);
-  margin-top: 80px;
+  margin-top: 96px;
 }
 
 .footer-line {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+  color: var(--text-muted);
 }
 
 .footer-line a {
   color: var(--text-secondary);
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 1px;
-  transition: color 0.15s;
+  transition: color 0.18s;
 }
 
-.footer-line a:hover { color: var(--text-primary); }
+.footer-line a:hover {
+  color: var(--accent);
+}
 
 .footer-separator {
-  margin: 0 16px;
-  opacity: 0.3;
+  margin: 0 20px;
+  opacity: 0.25;
 }
 
-/* ---- Responsive ---- */
+/* ================================================================
+   RESPONSIVE
+================================================================ */
 @media (max-width: 640px) {
-  .feed-item {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
+  :root { --feed-gap: 40px; }
 
-  .reader-inner {
-    padding: 32px 24px 60px;
-  }
+  .hero { padding: 60px 0 48px; }
 
-  .hero { padding: 48px 0 40px; }
+  .hero-headline { letter-spacing: 0.10em; }
+
+  .reader-inner { padding: 36px 24px 72px; }
+
+  .site-nav { gap: 20px; }
 }
