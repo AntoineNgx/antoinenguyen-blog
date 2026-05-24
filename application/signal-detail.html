@@ -121,7 +121,7 @@
       <p class="footer-line">
         <a href="../index.html" data-blog-root="1">← Back to blog</a>
         <span style="margin: 0 20px; opacity: 0.3;">—</span>
-        <a href="mailto:contact@antoinenguyen.io">contact@antoinenguyen.io</a>
+        <a href="mailto:antoinengx@gmail.com">antoinengx@gmail.com</a>
       </p>
     </div>
   </footer>
@@ -219,7 +219,7 @@
       var p = window.location.pathname;
       var i = p.indexOf("/application/");
       var root = window.location.origin + (i >= 0 ? p.slice(0, i + 1) : "/");
-      document.querySelectorAll("a[href="../index.html"], a[data-blog-root]").forEach(function(a) {
+      document.querySelectorAll('a[href="../index.html"], a[data-blog-root]').forEach(function(a) {
         a.href = root;
       });
     })();
