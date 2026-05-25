@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Antoine Nguyen</title>
+  <script>
+    // SPA redirect: GitHub Pages serves this file for any unknown path.
+    // Re-encode the path into the query string so index.html can restore it.
+    // segs=0 for custom domains (root), segs=1 for project pages (github.io/repo/).
+    var segs = window.location.hostname.includes('github.io') ? 1 : 0;
+    var l = window.location;
+    l.replace(
+      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      l.pathname.split('/').slice(0, 1 + segs).join('/') + '/?/' +
+      l.pathname.slice(1).split('/').slice(segs).join('/').replace(/&/g, '~and~') +
+      (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+      l.hash
+    );
+  </script>
+</head>
+<body></body>
+</html>

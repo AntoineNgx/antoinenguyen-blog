@@ -17,7 +17,7 @@
     }
   </script>
 
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <style>body { background-color: #F8F8F6; }</style>
@@ -31,19 +31,19 @@
   ================================================================ -->
   <header class="site-header" id="siteHeader">
     <div class="container-wide flex items-center justify-between">
-      <a href="." class="wordmark">Antoine Nguyen</a>
+      <a href="/" class="wordmark" id="headerWordmark">Antoine Nguyen</a>
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="#" class="nav-filter active" data-filter="all">Home</a>
         <a href="#" class="nav-filter" data-filter="professional">Professional</a>
         <a href="#" class="nav-filter" data-filter="research">Research</a>
         <div class="nav-dropdown-container" id="appDropdownContainer">
-          <a href="application/index.html" class="nav-dropdown-trigger" id="appTrigger">Application <span class="chevron">▾</span></a>
+          <a href="/application/index.html" class="nav-dropdown-trigger" id="appTrigger">Application <span class="chevron">▾</span></a>
           <div class="nav-dropdown">
-            <a href="application/index.html">Overview</a>
-            <a href="application/dashboard.html">Dashboard</a>
-            <a href="application/signal-detail.html">Signal Detail</a>
-            <a href="application/methodology.html">Methodology</a>
-            <a href="application/about.html">About the Lab</a>
+            <a href="/application/index.html">Overview</a>
+            <a href="/application/dashboard.html">Dashboard</a>
+            <a href="/application/signal-detail.html">Signal Detail</a>
+            <a href="/application/methodology.html">Methodology</a>
+            <a href="/application/about.html">About the Lab</a>
           </div>
         </div>
         <a href="#" class="nav-filter" data-filter="about">About</a>
@@ -189,7 +189,7 @@
       <a href="#" class="sidebar-filter active" data-filter="all">All</a>
       <a href="#" class="sidebar-filter" data-filter="professional">Professional</a>
       <a href="#" class="sidebar-filter" data-filter="research">Research</a>
-      <a href="application/index.html" class="sidebar-filter" id="sidebarAppLink">Application</a>
+      <a href="/application/index.html" class="sidebar-filter" id="sidebarAppLink">Application</a>
       <a href="#" class="sidebar-filter" data-filter="about">About</a>
     </nav>
   </div>
@@ -209,7 +209,7 @@
     <!-- Full-page header (horizontal, shown only in fullpage mode) -->
     <div class="reader-fp-header" id="readerFpHeader">
       <div class="container-wide flex items-center justify-between">
-        <a href="." class="wordmark" id="fpWordmark">Antoine Nguyen</a>
+        <a href="/" class="wordmark" id="fpWordmark">Antoine Nguyen</a>
         <nav class="site-nav" aria-label="Fullpage navigation">
           <a href="#" class="fp-filter" data-filter="all">All</a>
           <a href="#" class="fp-filter" data-filter="professional">Professional</a>
@@ -251,27 +251,71 @@
        SCRIPTS
   ================================================================ -->
   <script>
-    /* Scroll-based header shadow */
+    /* ── SPA redirect restore ──────────────────────────────────────────────
+       404.html encodes the original path as /?/the/path so index.html is
+       always served from the root. Here we silently restore the real URL
+       before any routing logic reads window.location.pathname.
+    ── */
+    (function () {
+      const s = window.location.search;
+      if (s && s[1] === '/') {
+        const path = s.slice(1).split('&')[0];
+        history.replaceState(null, null,
+          window.location.pathname.replace(/\/$/, '') + path);
+      }
+    })();
+
+    /* ── Routing helpers ───────────────────────────────────────────────── */
+    function _base() {
+      return window.location.hostname.includes('github.io') ? '/antoinenguyen-blog' : '';
+    }
+
+    function parseURL() {
+      let p = window.location.pathname;
+      const base = _base();
+      if (base && p.startsWith(base)) p = p.slice(base.length);
+      p = p.replace(/^\//, '').replace(/\/$/, '');
+      if (!p) return { filter: 'all', slug: null };
+      const parts = p.split('/');
+      return { filter: parts[0] || 'all', slug: parts[1] || null };
+    }
+
+    function buildURL(filter, slug) {
+      const base = _base();
+      if (!filter || filter === 'all') return base + '/';
+      if (!slug) return base + '/' + filter;
+      return base + '/' + filter + '/' + slug;
+    }
+
+    function pushURL(filter, slug) {
+      history.pushState({ filter: filter || 'all', slug: slug || null }, '', buildURL(filter, slug));
+    }
+
+    function replaceURL(filter, slug) {
+      history.replaceState({ filter: filter || 'all', slug: slug || null }, '', buildURL(filter, slug));
+    }
+
+    /* ── Scroll-based header shadow ────────────────────────────────────── */
     const header = document.getElementById('siteHeader');
     window.addEventListener('scroll', () => {
       header.classList.toggle('scrolled', window.scrollY > 36);
     }, { passive: true });
 
-    /* Posts registry */
+    /* ── Posts registry ────────────────────────────────────────────────── */
     const POSTS = {
-      'measuring-the-wrong-thing': 'content/measuring-the-wrong-thing.md',
-      'the-migration-that-actually-sticks': 'content/the-migration-that-actually-sticks.md',
+      'measuring-the-wrong-thing':        '/content/measuring-the-wrong-thing.md',
+      'the-migration-that-actually-sticks': '/content/the-migration-that-actually-sticks.md',
     };
     const POST_META = {
-      'measuring-the-wrong-thing': { date: '2026-05-21', category: 'Professional', readTime: '8 min' },
+      'measuring-the-wrong-thing':        { date: '2026-05-21', category: 'Professional', readTime: '8 min' },
       'the-migration-that-actually-sticks': { date: '2026-05-25', category: 'Professional', readTime: '12 min' },
     };
 
-    /* State */
+    /* ── State ─────────────────────────────────────────────────────────── */
     let currentFilter = 'all';
-    let isFullpage = false;
+    let isFullpage    = false;
 
-    /* Elements */
+    /* ── Elements ──────────────────────────────────────────────────────── */
     const panel      = document.getElementById('readerPanel');
     const sidebar    = document.getElementById('readerSidebar');
     const closeBtn   = document.getElementById('readerClose');
@@ -280,8 +324,8 @@
     const feedEl     = document.getElementById('feed');
     const aboutEl    = document.getElementById('aboutSection');
 
-    /* ── Filter ── */
-    function applyFilter(filter) {
+    /* ── Filter ────────────────────────────────────────────────────────── */
+    function applyFilter(filter, push = true) {
       currentFilter = filter;
 
       document.querySelectorAll('.nav-filter, .sidebar-filter, .fp-filter').forEach(el => {
@@ -299,44 +343,18 @@
           item.classList.toggle('hidden', !show);
         });
       }
+
+      if (push) pushURL(filter, null);
     }
 
-    document.querySelectorAll('.nav-filter').forEach(btn => {
-      btn.addEventListener('click', e => { e.preventDefault(); applyFilter(btn.dataset.filter); });
-    });
-
-    /* Only intercept sidebar items that are feed filters (have data-filter).
-       The APPLICATION link has no data-filter and must navigate freely. */
-    document.querySelectorAll('.sidebar-filter[data-filter]').forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.preventDefault();
-        closeReader();
-        applyFilter(btn.dataset.filter);
-      });
-    });
-
-    document.querySelectorAll('.fp-filter').forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.preventDefault();
-        closeReader();
-        applyFilter(btn.dataset.filter);
-      });
-    });
-
-    document.getElementById('sidebarWordmark').addEventListener('click', e => {
-      e.preventDefault(); closeReader();
-    });
-    document.getElementById('fpWordmark').addEventListener('click', e => {
-      e.preventDefault(); closeReader();
-    });
-
-    /* ── Reader open / close ── */
-    function openReader(slug) {
+    /* ── Reader open / close ───────────────────────────────────────────── */
+    function openReader(slug, push = true) {
       const path = POSTS[slug];
       if (!path) return;
 
-      readerBody.innerHTML = '<p class="reader-loading">Loading&hellip;</p>';
+      if (push) pushURL(currentFilter, slug);
 
+      readerBody.innerHTML = '<p class="reader-loading">Loading&hellip;</p>';
       panel.classList.add('open');
       panel.setAttribute('aria-hidden', 'false');
       sidebar.setAttribute('aria-hidden', 'false');
@@ -375,7 +393,7 @@
         });
     }
 
-    function closeReader() {
+    function closeReader(push = true) {
       panel.classList.remove('open');
       panel.setAttribute('aria-hidden', 'true');
       sidebar.setAttribute('aria-hidden', 'true');
@@ -383,6 +401,8 @@
       document.body.style.overflow = '';
       isFullpage = false;
       expandBtn.textContent = 'Full Page ↗';
+
+      if (push) pushURL(currentFilter, null);
     }
 
     function toggleFullpage() {
@@ -392,17 +412,62 @@
       panel.scrollTop = 0;
     }
 
-    closeBtn.addEventListener('click', closeReader);
+    /* ── Event listeners ───────────────────────────────────────────────── */
+    document.querySelectorAll('.nav-filter').forEach(btn => {
+      btn.addEventListener('click', e => { e.preventDefault(); applyFilter(btn.dataset.filter); });
+    });
+
+    document.querySelectorAll('.sidebar-filter[data-filter]').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        closeReader(false);
+        applyFilter(btn.dataset.filter);
+      });
+    });
+
+    document.querySelectorAll('.fp-filter').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        closeReader(false);
+        applyFilter(btn.dataset.filter);
+      });
+    });
+
+    ['sidebarWordmark', 'fpWordmark', 'headerWordmark'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('click', e => {
+        e.preventDefault();
+        closeReader(false);
+        applyFilter('all');
+      });
+    });
+
+    closeBtn.addEventListener('click', () => closeReader());
     expandBtn.addEventListener('click', toggleFullpage);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeReader(); });
 
-    /* Feed item click */
     document.querySelectorAll('.feed-item[data-slug]').forEach(item => {
       item.addEventListener('click', () => openReader(item.dataset.slug));
       item.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openReader(item.dataset.slug); }
       });
     });
+
+    /* ── Browser back / forward ────────────────────────────────────────── */
+    window.addEventListener('popstate', e => {
+      const { filter = 'all', slug = null } = e.state || parseURL();
+      closeReader(false);
+      applyFilter(filter, false);
+      if (slug) openReader(slug, false);
+    });
+
+    /* ── Initial route ─────────────────────────────────────────────────── */
+    (function () {
+      const { filter, slug } = parseURL();
+      applyFilter(filter, false);
+      if (slug) openReader(slug, false);
+      replaceURL(filter, slug);
+    })();
   </script>
 
 </body>
