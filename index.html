@@ -81,6 +81,27 @@
           </div>
         </article>
 
+        <!-- Article 02 -->
+        <article
+          class="feed-item"
+          role="listitem"
+          data-category="professional"
+          data-slug="the-migration-that-actually-sticks"
+          tabindex="0"
+          aria-label="Open: The SaaS Implementation/Migration That Actually Sticks"
+        >
+          <div class="feed-meta">
+            <span class="feed-tag">Professional</span>
+            <span class="feed-date">2026-05-25</span>
+          </div>
+          <div class="feed-title">
+            The SaaS Implementation/Migration That Actually Sticks
+          </div>
+          <div class="feed-abstract">
+            Most SaaS migrations have a plan. The ones that actually stick have a structure. A phase-by-phase field guide for what needs to happen, in what order, and why skipping any of it costs you later.
+          </div>
+        </article>
+
         <!-- Forthcoming: Professional -->
         <article
           class="feed-item"
@@ -239,9 +260,11 @@
     /* Posts registry */
     const POSTS = {
       'measuring-the-wrong-thing': 'content/measuring-the-wrong-thing.md',
+      'the-migration-that-actually-sticks': 'content/the-migration-that-actually-sticks.md',
     };
     const POST_META = {
       'measuring-the-wrong-thing': { date: '2026-05-21', category: 'Professional', readTime: '8 min' },
+      'the-migration-that-actually-sticks': { date: '2026-05-25', category: 'Professional', readTime: '12 min' },
     };
 
     /* State */
@@ -337,6 +360,14 @@
             meta.textContent = `${date}  ·  ${category}  ·  ${readTime} read`;
             h1.insertAdjacentElement('afterend', meta);
           }
+
+          readerBody.querySelectorAll('a[href^="#"]').forEach(a => {
+            const targetSlug = a.getAttribute('href').slice(1);
+            if (POSTS[targetSlug]) {
+              a.addEventListener('click', e => { e.preventDefault(); openReader(targetSlug); });
+            }
+          });
+
           panel.scrollTop = 0;
         })
         .catch(() => {
