@@ -186,7 +186,7 @@
   <div class="reader-sidebar" id="readerSidebar" aria-hidden="true">
     <a href="/" class="wordmark sidebar-wordmark" id="sidebarWordmark">Antoine Nguyen</a>
     <nav class="sidebar-nav" aria-label="Sidebar navigation">
-      <a href="#" class="sidebar-filter active" data-filter="all">All</a>
+      <a href="#" class="sidebar-filter active" data-filter="all">Home</a>
       <a href="#" class="sidebar-filter" data-filter="professional">Professional</a>
       <a href="#" class="sidebar-filter" data-filter="research">Research</a>
       <a href="/application/index.html" class="sidebar-filter" id="sidebarAppLink">Application</a>
@@ -211,7 +211,7 @@
       <div class="container-wide flex items-center justify-between">
         <a href="/" class="wordmark" id="fpWordmark">Antoine Nguyen</a>
         <nav class="site-nav" aria-label="Fullpage navigation">
-          <a href="#" class="fp-filter" data-filter="all">All</a>
+          <a href="#" class="fp-filter" data-filter="all">Home</a>
           <a href="#" class="fp-filter" data-filter="professional">Professional</a>
           <a href="#" class="fp-filter" data-filter="research">Research</a>
           <a href="#" class="fp-filter" data-filter="application">Application</a>
@@ -302,11 +302,14 @@
     }, { passive: true });
 
     /* ── Posts registry ────────────────────────────────────────────────── */
-    const POSTS = {
-      'measuring-the-wrong-thing':           '/content/measuring-the-wrong-thing.md',
-      'the-migration-that-actually-sticks':  '/content/the-migration-that-actually-sticks.md',
-      'the-numbers-dont-tell-the-whole-story': '/content/the-numbers-dont-tell-the-whole-story.md',
-    };
+    const POSTS = (function () {
+      const b = _base();
+      return {
+        'measuring-the-wrong-thing':             b + '/content/measuring-the-wrong-thing.md',
+        'the-migration-that-actually-sticks':    b + '/content/the-migration-that-actually-sticks.md',
+        'the-numbers-dont-tell-the-whole-story': b + '/content/the-numbers-dont-tell-the-whole-story.md',
+      };
+    })();
     const POST_META = {
       'measuring-the-wrong-thing':           { date: '2026-05-21', category: 'Professional', readTime: '8 min' },
       'the-migration-that-actually-sticks':  { date: '2026-05-25', category: 'Professional', readTime: '12 min' },
