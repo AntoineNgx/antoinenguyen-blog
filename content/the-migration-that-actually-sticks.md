@@ -26,7 +26,7 @@ One pattern I see repeatedly: the cost estimate gets finalized before the comple
 
 **But scoping questions only give you half the picture.**
 
-The questions above tell you what the source system contains. They don't tell you what users actually need. That gap is where migrations quietly fail, and it's exactly the gap I described in my previous post on [measuring the wrong thing](#measuring-the-wrong-thing).
+The questions above tell you what the source system contains. They don't tell you what users actually need. That gap is where migrations quietly fail, and it's exactly the gap I described in my previous post on <a href="#measuring-the-wrong-thing" style="font-weight:700;text-decoration:underline">measuring the wrong thing</a>.
 
 After the internal scoping alignment, the next step is going to the users themselves. Conduct short, focused interviews with each user group. Understand their daily operations. Ask what they actually use in the current system, what they've been working around for years, and what they wish existed but never did. If possible, provide a short trial in a controlled environment, a sandbox configured with realistic data, and collect structured feedback.
 
