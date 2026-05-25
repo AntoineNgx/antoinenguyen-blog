@@ -78,6 +78,9 @@
         </div>
         <a href="#" class="nav-filter" data-filter="about">About</a>
       </nav>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
@@ -208,6 +211,31 @@
     </div>
 
   </div><!-- /#mainContent -->
+
+
+  <!-- ================================================================
+       MOBILE NAV OVERLAY
+  ================================================================ -->
+  <div class="mobile-nav" id="mobileNav" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <div class="mobile-nav-header">
+      <a href="/" class="wordmark" id="mobileNavWordmark">Antoine Nguyen</a>
+      <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close navigation menu">Close</button>
+    </div>
+    <nav class="mobile-nav-links" aria-label="Mobile navigation">
+      <button class="mobile-nav-link active" data-filter="all">Home</button>
+      <button class="mobile-nav-link" data-filter="professional">Professional</button>
+      <button class="mobile-nav-link" data-filter="research">Research</button>
+      <a href="/application/index.html" class="mobile-nav-link">Application</a>
+      <div class="mobile-nav-sub">
+        <a href="/application/index.html">Overview</a>
+        <a href="/application/dashboard.html">Dashboard</a>
+        <a href="/application/signal-detail.html">Signal Detail</a>
+        <a href="/application/methodology.html">Methodology</a>
+        <a href="/application/about.html">About the Lab</a>
+      </div>
+      <button class="mobile-nav-link" data-filter="about">About</button>
+    </nav>
+  </div>
 
 
   <!-- ================================================================
@@ -502,6 +530,56 @@
       applyFilter(filter, false);
       if (slug) openReader(slug, false);
       replaceURL(filter, slug);
+    })();
+
+    /* ── Mobile nav ────────────────────────────────────────────────────── */
+    (function () {
+      const menuBtn  = document.getElementById('mobileMenuBtn');
+      const mobileNav = document.getElementById('mobileNav');
+      const closeBtn  = document.getElementById('mobileNavClose');
+      const wordmark  = document.getElementById('mobileNavWordmark');
+
+      function openMobileNav() {
+        mobileNav.classList.add('open');
+        menuBtn.classList.add('open');
+        menuBtn.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('mobile-nav-open');
+      }
+
+      function closeMobileNav() {
+        mobileNav.classList.remove('open');
+        menuBtn.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('mobile-nav-open');
+      }
+
+      menuBtn.addEventListener('click', () =>
+        mobileNav.classList.contains('open') ? closeMobileNav() : openMobileNav()
+      );
+      closeBtn.addEventListener('click', closeMobileNav);
+      wordmark.addEventListener('click', e => { e.preventDefault(); closeMobileNav(); applyFilter('all'); });
+
+      document.querySelectorAll('.mobile-nav-link[data-filter]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          closeMobileNav();
+          applyFilter(btn.dataset.filter);
+        });
+      });
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeMobileNav();
+      });
+
+      /* Keep mobile nav filter active indicator in sync */
+      const origApplyFilter = applyFilter;
+      function syncMobileNav(filter) {
+        document.querySelectorAll('.mobile-nav-link[data-filter]').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.filter === filter);
+        });
+      }
+      document.querySelectorAll('.nav-filter').forEach(btn => {
+        btn.addEventListener('click', () => syncMobileNav(btn.dataset.filter));
+      });
     })();
   </script>
 
