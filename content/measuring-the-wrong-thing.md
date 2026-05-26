@@ -28,7 +28,35 @@ Hence, User adoption is the north star. Everything else is scaffolding. Once you
 
 The standard project flow looks like this:
 
-![Standard migration flow misses the critical user research step](content/image.png/failedscope.png)
+<!-- DIAGRAM 1: Scope driven by source system (won't work) -->
+<figure style="margin:0 0 2rem 0">
+<svg width="100%" viewBox="0 0 680 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="d1-title d1-desc">
+  <title id="d1-title">Failed approach: scope driven by source system</title>
+  <desc id="d1-desc">Process flow where scope is driven by the source system — won't work.</desc>
+  <text x="16" y="18" style="font-size:12px;font-weight:600;fill:#c0392b;font-family:sans-serif">&#x2715;  Scope driven by source system</text>
+  <rect x="10" y="28" width="234" height="140" rx="12" fill="#d0d0d0" stroke="#aaa" stroke-width="0.5"/>
+  <text x="20" y="160" style="font-size:10px;font-weight:600;fill:#555;font-family:sans-serif">SOURCE SYSTEM</text>
+  <rect x="246" y="28" width="388" height="140" rx="12" fill="#1a3a2a" stroke="#2d6b45" stroke-width="0.5"/>
+  <text x="258" y="160" style="font-size:10px;font-weight:600;fill:#7ec8a0;font-family:sans-serif">DESTINATION SYSTEM</text>
+  <polygon points="18,44 124,44 140,83 124,122 18,122 34,83" fill="#555" stroke="#444" stroke-width="0.5"/>
+  <text x="38" y="76" style="font-size:9px;fill:#fff;font-family:sans-serif">&#x2022; Analyze Source</text>
+  <text x="38" y="89" style="font-size:9px;fill:#fff;font-family:sans-serif">  System Design</text>
+  <text x="38" y="102" style="font-size:9px;fill:#fff;font-family:sans-serif">&#x2022; Analyze Source Data</text>
+  <polygon points="142,44 248,44 264,83 248,122 142,122 158,83" fill="#3a3a3a" stroke="#222" stroke-width="0.5"/>
+  <text x="162" y="76" style="font-size:9px;fill:#fff;font-family:sans-serif">&#x2022; Develop Project</text>
+  <text x="162" y="89" style="font-size:9px;fill:#fff;font-family:sans-serif">  Scope</text>
+  <text x="162" y="102" style="font-size:9px;fill:#fff;font-family:sans-serif">&#x2022; Develop Project Plan</text>
+  <polygon points="266,44 372,44 388,83 372,122 266,122 282,83" fill="#2d6b45" stroke="#1f5233" stroke-width="0.5"/>
+  <text x="286" y="76" style="font-size:9px;fill:#fff;font-family:sans-serif">&#x2022; Application</text>
+  <text x="286" y="89" style="font-size:9px;fill:#fff;font-family:sans-serif">  Configuration</text>
+  <text x="286" y="102" style="font-size:9px;fill:#fff;font-family:sans-serif">&#x2022; Data Migration</text>
+  <polygon points="390,44 492,44 508,83 492,122 390,122 406,83" fill="#5a3060" stroke="#432346" stroke-width="0.5"/>
+  <text x="410" y="80" style="font-size:9px;fill:#fff;font-family:sans-serif">&#x2022; Project Closure</text>
+  <text x="410" y="93" style="font-size:9px;fill:#fff;font-family:sans-serif">&#x2022; User training</text>
+  <text x="520" y="79" style="font-size:11px;font-weight:700;fill:#c0392b;font-family:sans-serif">&#x2715; WON&#x2019;T</text>
+  <text x="520" y="93" style="font-size:11px;font-weight:700;fill:#c0392b;font-family:sans-serif">WORK</text>
+</svg>
+</figure>
 
 This flow has a fatal assumption embedded in it: that the source system is the truth about what users need.
 
@@ -42,7 +70,44 @@ Before defining any migration scope, you need answers to questions the source sy
 
 Looking at the source system gives you half the story. The other half lives in the habits, workarounds, and unspoken frustrations of the people who will determine whether this migration succeeds or fails.
 
-![The correct flow: user research before defining scope](content/image.png/successscope.png)
+<!-- DIAGRAM 2: Scope driven by user reality (success) -->
+<figure style="margin:0">
+<svg width="100%" viewBox="0 0 680 205" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="d2-title d2-desc">
+  <title id="d2-title">Successful approach: scope driven by user reality</title>
+  <desc id="d2-desc">Process flow where scope is driven by user reality — success.</desc>
+  <text x="16" y="18" style="font-size:12px;font-weight:600;fill:#2d8a55;font-family:sans-serif">&#x2713;  Scope driven by user reality</text>
+  <rect x="10" y="30" width="300" height="148" rx="12" fill="#d0d0d0" stroke="#aaa" stroke-width="0.5"/>
+  <text x="20" y="170" style="font-size:10px;font-weight:600;fill:#555;font-family:sans-serif">SOURCE SYSTEM</text>
+  <rect x="312" y="30" width="328" height="148" rx="12" fill="#1a3a2a" stroke="#2d6b45" stroke-width="0.5"/>
+  <text x="324" y="170" style="font-size:10px;font-weight:600;fill:#7ec8a0;font-family:sans-serif">DESTINATION SYSTEM</text>
+  <polygon points="18,46 100,46 116,84 100,122 18,122 34,84" fill="#555" stroke="#444" stroke-width="0.5"/>
+  <text x="38" y="74" style="font-size:9px;fill:#fff;font-family:sans-serif">&#x2022; Analyze</text>
+  <text x="38" y="86" style="font-size:9px;fill:#fff;font-family:sans-serif">  Source</text>
+  <text x="38" y="98" style="font-size:9px;fill:#fff;font-family:sans-serif">  System Design</text>
+  <text x="38" y="110" style="font-size:9px;fill:#fff;font-family:sans-serif">&#x2022; Analyze</text>
+  <text x="38" y="119" style="font-size:9px;fill:#fff;font-family:sans-serif">  Source Data</text>
+  <polygon points="118,46 212,46 228,84 212,122 118,122 134,84" fill="#3a3a3a" stroke="#222" stroke-width="0.5"/>
+  <text x="138" y="72" style="font-size:9px;font-weight:700;fill:#4ade80;font-family:sans-serif">&#x2022; User Research</text>
+  <text x="138" y="84" style="font-size:9px;font-weight:700;fill:#4ade80;font-family:sans-serif">&#x2022; Business Use</text>
+  <text x="138" y="96" style="font-size:9px;font-weight:700;fill:#4ade80;font-family:sans-serif">  Case</text>
+  <text x="138" y="108" style="font-size:9px;font-weight:700;fill:#4ade80;font-family:sans-serif">  Development</text>
+  <text x="200" y="143" text-anchor="middle" style="font-size:9px;font-style:italic;font-weight:600;fill:#3a8a55;font-family:sans-serif">Win or lose here</text>
+  <polygon points="230,46 330,46 346,84 330,122 230,122 246,84" fill="#3a3a3a" stroke="#222" stroke-width="0.5"/>
+  <text x="250" y="70" style="font-size:9px;fill:#fff;font-family:sans-serif">&#x2022; Develop</text>
+  <text x="250" y="82" style="font-size:9px;fill:#fff;font-family:sans-serif">  Project Scope</text>
+  <text x="250" y="94" style="font-size:9px;fill:#fff;font-family:sans-serif">&#x2022; Develop</text>
+  <text x="250" y="106" style="font-size:9px;fill:#fff;font-family:sans-serif">  Project Plan</text>
+  <text x="250" y="118" style="font-size:9px;fill:#4ade80;font-family:sans-serif">&#x2022; Change Mgmt Plan</text>
+  <polygon points="348,46 438,46 454,84 438,122 348,122 364,84" fill="#2d6b45" stroke="#1f5233" stroke-width="0.5"/>
+  <text x="368" y="76" style="font-size:9px;fill:#fff;font-family:sans-serif">&#x2022; Application</text>
+  <text x="368" y="88" style="font-size:9px;fill:#fff;font-family:sans-serif">  Configuration</text>
+  <text x="368" y="100" style="font-size:9px;fill:#fff;font-family:sans-serif">&#x2022; Data Migration</text>
+  <polygon points="456,46 540,46 556,84 540,122 456,122 472,84" fill="#5a3060" stroke="#432346" stroke-width="0.5"/>
+  <text x="476" y="80" style="font-size:9px;fill:#fff;font-family:sans-serif">&#x2022; Project Closure</text>
+  <text x="476" y="93" style="font-size:9px;fill:#fff;font-family:sans-serif">&#x2022; User Training</text>
+  <text x="566" y="82" style="font-size:11px;font-weight:700;fill:#2d8a55;font-family:sans-serif">&#x2713; SUCCESS</text>
+</svg>
+</figure>
 
 
 ### **The four questions that determine scope.**
