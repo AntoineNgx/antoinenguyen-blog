@@ -90,15 +90,17 @@ a { color: inherit; text-decoration: none; transition: color var(--dur); }
 body.panel-open .site-header { visibility: hidden; }
 
 .wordmark {
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--text-primary);
-  transition: color var(--dur);
+  display: inline-flex;
+  align-items: center;
+  transition: opacity var(--dur);
 }
-.wordmark:hover { color: var(--accent); }
+.wordmark img {
+  height: 26px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
+.wordmark:hover { opacity: 0.6; }
 
 /* ---- Primary nav (top header) ---- */
 .site-nav {
@@ -281,7 +283,7 @@ body.reader-fullpage .reader-sidebar {
   pointer-events: none;
 }
 
-.sidebar-wordmark { display: block; }
+.sidebar-wordmark { display: inline-flex; }
 
 .sidebar-nav {
   display: flex;
@@ -1188,7 +1190,7 @@ body.reader-fullpage .reader-inner {
 
   .site-header { padding: 20px 0; }
 
-  .wordmark { font-size: 12px; letter-spacing: 0.18em; }
+  .wordmark img { height: 22px; }
 
   .container-narrow,
   .container-wide { padding: 0 4%; }
