@@ -187,7 +187,7 @@ The question that unlocks it is always the same: what are the cases, when does e
       <div class="branch-hdr b1-hdr">Case 1: blocking error</div>
       <div class="branch-body">
         <div class="condition">When: the record cannot be created at all</div>
-        <div class="action">Fix the source data in Classic, re-run the dry run</div>
+        <div class="action">Fix the source data in Excel spreadsheet, re-run the dry run</div>
         <span class="feasibility f-ai">LLM</span>
       </div>
     </div>
@@ -195,7 +195,7 @@ The question that unlocks it is always the same: what are the cases, when does e
       <div class="branch-hdr b2-hdr">Case 2: missing info</div>
       <div class="branch-body">
         <div class="condition">When: the record was created but fields are incomplete</div>
-        <div class="action">Generate a Bane import Excel, run the supplementary import</div>
+        <div class="action">Generate an import data, run the supplementary import</div>
         <span class="feasibility f-ai">LLM</span>
       </div>
     </div>

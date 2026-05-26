@@ -465,6 +465,13 @@
             h1.insertAdjacentElement('afterend', meta);
           }
 
+          readerBody.querySelectorAll('script').forEach(old => {
+            const s = document.createElement('script');
+            Array.from(old.attributes).forEach(a => s.setAttribute(a.name, a.value));
+            s.textContent = old.textContent;
+            old.parentNode.replaceChild(s, old);
+          });
+
           readerBody.querySelectorAll('a[href^="#"]').forEach(a => {
             const targetSlug = a.getAttribute('href').slice(1);
             if (POSTS[targetSlug]) {
