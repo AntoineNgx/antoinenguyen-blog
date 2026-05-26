@@ -361,9 +361,9 @@
 
     function buildURL(filter, slug) {
       const base = _base();
-      if (!filter || filter === 'all') return base + '/';
-      if (!slug) return base + '/' + filter;
-      return base + '/' + filter + '/' + slug;
+      const f = (!filter || filter === 'all') ? 'all' : filter;
+      if (!slug) return f === 'all' ? base + '/' : base + '/' + f;
+      return base + '/' + f + '/' + slug;
     }
 
     function pushURL(filter, slug) {
