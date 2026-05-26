@@ -361,9 +361,9 @@
 
     function buildURL(filter, slug) {
       const base = _base();
-      const f = (!filter || filter === 'all') ? 'all' : filter;
-      if (!slug) return f === 'all' ? base + '/' : base + '/' + f;
-      return base + '/' + f + '/' + slug;
+      if (!filter || filter === 'all') return slug ? base + '/' + slug : base + '/';
+      if (!slug) return base + '/' + filter;
+      return base + '/' + filter + '/' + slug;
     }
 
     function pushURL(filter, slug) {
@@ -438,7 +438,8 @@
       const path = POSTS[slug];
       if (!path) return;
 
-      if (push) pushURL(currentFilter, slug);
+      const postCategory = POST_META[slug] ? POST_META[slug].category.toLowerCase() : currentFilter;
+      if (push) pushURL(postCategory, slug);
 
       readerBody.innerHTML = '<p class="reader-loading">Loading&hellip;</p>';
       panel.classList.add('open');
