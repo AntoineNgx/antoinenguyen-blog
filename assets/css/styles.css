@@ -22,6 +22,17 @@
   /* Panel widths */
   --sidebar-w: 22vw;
   --panel-w:   78vw;
+
+  /* Aliases for inline visual components */
+  --color-text-primary:      var(--text-primary);
+  --color-text-secondary:    var(--text-secondary);
+  --color-text-tertiary:     var(--text-muted);
+  --color-border-tertiary:   var(--border);
+  --color-border-secondary:  var(--border);
+  --color-background-primary:   var(--bg-base);
+  --color-background-secondary: var(--bg-surface);
+  --border-radius-lg: 8px;
+  --border-radius-md: 6px;
 }
 
 /* ---- Reset ---- */

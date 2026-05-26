@@ -1,0 +1,72 @@
+
+<style>
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  .fcheck{padding:1rem 0;max-width:560px}
+  .q-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary);cursor:pointer}
+  .q-item:last-of-type{border-bottom:none}
+  .q-toggle{width:18px;height:18px;border-radius:4px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-secondary);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s}
+  .q-toggle.checked{background:#1D9E75;border-color:#1D9E75}
+  .q-toggle svg{display:none}
+  .q-toggle.checked svg{display:block}
+  .q-text{font-size:13px;color:var(--color-text-primary);line-height:1.5}
+  .q-sub{font-size:11px;color:var(--color-text-tertiary);margin-top:2px;line-height:1.4}
+  .result-bar{margin-top:14px;padding:12px 14px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary);transition:background .3s}
+  .result-label{font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+  .result-verdict{font-size:13px;color:var(--color-text-secondary);line-height:1.5}
+  .score-track{height:4px;border-radius:2px;background:var(--color-border-tertiary);margin:10px 0 0;overflow:hidden}
+  .score-fill{height:100%;border-radius:2px;transition:width .35s,background .35s}
+</style>
+<h2 class="sr-only">Interactive checklist to assess whether a task is ready to delegate to AI, with a score and verdict that updates as you check items</h2>
+<div class="fcheck" id="fc">
+  <div class="q-item" onclick="toggle(0)">
+    <div class="q-toggle" id="t0"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div><div class="q-text">Can you describe the task clearly enough to brief a new assistant?</div><div class="q-sub">If you'd struggle to explain it, the AI will struggle to do it.</div></div>
+  </div>
+  <div class="q-item" onclick="toggle(1)">
+    <div class="q-toggle" id="t1"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div><div class="q-text">Is the output format specific enough that you'd know a good result from a bad one?</div><div class="q-sub">Vague outputs produce vague results. Define what done looks like.</div></div>
+  </div>
+  <div class="q-item" onclick="toggle(2)">
+    <div class="q-toggle" id="t2"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div><div class="q-text">Does the task run on text, files, or structured data the AI can read?</div><div class="q-sub">AI works on what it can see. If the input lives in a system with no export, that's a prerequisite to solve first.</div></div>
+  </div>
+  <div class="q-item" onclick="toggle(3)">
+    <div class="q-toggle" id="t3"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div><div class="q-text">Is a wrong output recoverable before it reaches a client or a production system?</div><div class="q-sub">Low-stakes errors are a feature, not a bug — they're how you learn. Irreversible ones need a human checkpoint first.</div></div>
+  </div>
+  <div class="q-item" onclick="toggle(4)">
+    <div class="q-toggle" id="t4"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div><div class="q-text">Is this task repeatable? Will you run it more than a handful of times?</div><div class="q-sub">One-off tasks rarely justify the brief-writing time. Recurring tasks pay back the investment fast.</div></div>
+  </div>
+  <div class="result-bar" id="result-bar">
+    <div class="result-label" id="result-label">Check the boxes above</div>
+    <div class="result-verdict" id="result-verdict">Your readiness score will appear here as you go.</div>
+    <div class="score-track"><div class="score-fill" id="score-fill" style="width:0%;background:#D3D1C7"></div></div>
+  </div>
+</div>
+<script>
+const states=[false,false,false,false,false];
+const verdicts=[
+  ["Not ready yet","Write out what the task is and what a good result looks like. Clarity comes first.","#D3D1C7"],
+  ["Early stage","You have a start. Keep defining the output and checking the inputs available to you.","#FAC775"],
+  ["Getting there","Half the conditions are met. Identify the remaining gaps before writing your first prompt.","#EF9F27"],
+  ["Nearly ready","One step from delegatable. Resolve the remaining condition and try a pilot.","#1D9E75"],
+  ["Nearly ready","One step from delegatable. Resolve the remaining condition and try a pilot.","#1D9E75"],
+  ["Ready to delegate","Write the brief, run a pilot on a low-stakes batch, review the output, and iterate.","#0F6E56"]
+];
+function toggle(i){
+  states[i]=!states[i];
+  const t=document.getElementById('t'+i);
+  t.classList.toggle('checked',states[i]);
+  update();
+}
+function update(){
+  const n=states.filter(Boolean).length;
+  const pct=n*20;
+  const sf=document.getElementById('score-fill');
+  sf.style.width=pct+'%';
+  sf.style.background=verdicts[n][2];
+  document.getElementById('result-label').textContent=n+'/5 — '+verdicts[n][0];
+  document.getElementById('result-verdict').textContent=verdicts[n][1];
+}
+</script>
