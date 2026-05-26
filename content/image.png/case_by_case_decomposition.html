@@ -1,0 +1,78 @@
+
+<style>
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  .dcmp{padding:1rem 0;font-size:13px}
+  .vague-box{padding:10px 16px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:var(--color-background-secondary);color:var(--color-text-secondary);text-align:center;margin:0 auto 6px;max-width:320px;line-height:1.5}
+  .vague-label{font-size:11px;color:var(--color-text-tertiary);text-align:center;margin-bottom:14px}
+  .arrow-down{text-align:center;color:var(--color-text-tertiary);font-size:13px;margin:2px 0 6px}
+  .q-box{padding:10px 16px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:var(--color-background-primary);color:var(--color-text-primary);font-weight:500;text-align:center;margin:0 auto 4px;max-width:320px}
+  .branches{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px}
+  .branch{border-radius:var(--border-radius-md);overflow:hidden;border:0.5px solid var(--color-border-tertiary)}
+  .branch-hdr{padding:8px 10px;font-size:11px;font-weight:500}
+  .b1-hdr{background:#EEEDFE;color:#26215C}
+  .b2-hdr{background:#E1F5EE;color:#04342C}
+  .b3-hdr{background:#FAECE7;color:#4A1B0C}
+  @media(prefers-color-scheme:dark){
+    .b1-hdr{background:#26215C;color:#CECBF6}
+    .b2-hdr{background:#04342C;color:#9FE1CB}
+    .b3-hdr{background:#4A1B0C;color:#F5C4B3}
+  }
+  .branch-body{padding:8px 10px;background:var(--color-background-secondary)}
+  .condition{font-size:11px;color:var(--color-text-tertiary);margin-bottom:5px;line-height:1.4}
+  .action{font-size:12px;color:var(--color-text-primary);line-height:1.5}
+  .feasibility{margin-top:6px;display:inline-block;font-size:10px;padding:2px 6px;border-radius:10px;font-weight:500}
+  .f-ai{background:#EEEDFE;color:#534AB7}
+  .f-human{background:#D3D1C7;color:#444441}
+  @media(prefers-color-scheme:dark){
+    .f-ai{background:#26215C;color:#AFA9EC}
+    .f-human{background:#2C2C2A;color:#B4B2A9}
+  }
+  .connector-row{display:flex;align-items:flex-start;justify-content:center;gap:0;margin-bottom:2px;position:relative;height:24px}
+  .v-line{width:0.5px;height:24px;background:var(--color-border-secondary);margin:0 auto}
+  .h-spread{position:absolute;top:0;left:16.5%;right:16.5%;height:0.5px;background:var(--color-border-secondary)}
+  .tick-left{position:absolute;left:16.5%;top:0;width:0.5px;height:12px;background:var(--color-border-secondary)}
+  .tick-mid{position:absolute;left:50%;top:0;width:0.5px;height:12px;background:var(--color-border-secondary);transform:translateX(-50%)}
+  .tick-right{position:absolute;right:16.5%;top:0;width:0.5px;height:12px;background:var(--color-border-secondary)}
+</style>
+<h2 class="sr-only">Diagram showing how a vague "case by case" task decomposes into three named cases, each with a condition and defined action</h2>
+<div class="dcmp">
+  <div class="vague-box">"It depends — every error is different. I handle it case by case."</div>
+  <div class="vague-label">Before decomposition: opaque, undelegatable</div>
+  <div class="arrow-down">↓ ask: what are the cases?</div>
+  <div class="q-box">When you get an error in the migration log, what decides what you do next?</div>
+  <div style="position:relative;height:28px;margin-top:2px">
+    <div class="h-spread"></div>
+    <div class="tick-left"></div>
+    <div class="tick-mid"></div>
+    <div class="tick-right"></div>
+  </div>
+  <div class="branches">
+    <div class="branch">
+      <div class="branch-hdr b1-hdr">Case 1: blocking error</div>
+      <div class="branch-body">
+        <div class="condition">When: the record cannot be created at all</div>
+        <div class="action">Fix the source data in Classic, re-run the dry run</div>
+        <span class="feasibility f-ai">LLM</span>
+      </div>
+    </div>
+    <div class="branch">
+      <div class="branch-hdr b2-hdr">Case 2: missing info</div>
+      <div class="branch-body">
+        <div class="condition">When: the record was created but fields are incomplete</div>
+        <div class="action">Generate a Bane import Excel, run the supplementary import</div>
+        <span class="feasibility f-ai">LLM</span>
+      </div>
+    </div>
+    <div class="branch">
+      <div class="branch-hdr b3-hdr">Case 3: ambiguous</div>
+      <div class="branch-body">
+        <div class="condition">When: error type cannot be classified with confidence</div>
+        <div class="action">Flag for human review before any action is taken</div>
+        <span class="feasibility f-human">Human</span>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:10px;padding:8px 10px;border-radius:var(--border-radius-md);border:0.5px dashed var(--color-border-secondary);font-size:11px;color:var(--color-text-tertiary);text-align:center;line-height:1.5">
+    After decomposition: three named cases, each with a condition, an action, and a clear owner. Two of three are delegatable to AI today.
+  </div>
+</div>

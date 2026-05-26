@@ -121,3 +121,7 @@ The scope statement prevents scope creep. The risk register prevents surprise. T
 Strip any of these out and you might still deliver the project on time. But "on time" is not the metric that matters. The metric that matters is whether users adopt the system, whether the client renews, and whether the migration becomes a foundation for growth rather than a source of regret.
 
 A migration framework isn't a bureaucratic exercise. It's an insurance policy against the most expensive kind of project failure, the kind that looks like success until it doesn't.
+
+---
+
+*If the framework described here raises the question of what AI can take over once the process is defined, the next piece, <a href="#you-already-know-how-work-with-AI" style="font-weight:700;text-decoration:underline"><strong><u>You Already Know How to Work with AI</u></strong></a>, walks through how to delegate repeatable steps to AI using the same briefing discipline you already use with people.*

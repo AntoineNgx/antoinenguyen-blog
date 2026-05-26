@@ -1,0 +1,51 @@
+
+<style>
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  .cmp{padding:1rem 0;width:100%}
+  .cmp-header{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-bottom:0}
+  .col-label{padding:9px 14px;font-size:11px;font-weight:500;letter-spacing:.04em;color:var(--color-text-tertiary);text-transform:uppercase}
+  .col-label.center{text-align:center}
+  .cmp-body{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden}
+  .row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-bottom:0.5px solid var(--color-border-tertiary)}
+  .row:last-child{border-bottom:none}
+  .cell{padding:11px 14px;font-size:13px;color:var(--color-text-primary);line-height:1.5}
+  .cell.concept{color:var(--color-text-secondary);font-size:12px;font-weight:500;background:var(--color-background-secondary);display:flex;align-items:center}
+  .cell.human{background:var(--color-background-primary)}
+  .cell.ai{background:var(--color-background-primary)}
+  .divider{width:0.5px;background:var(--color-border-tertiary)}
+</style>
+<h2 class="sr-only">Comparison of what you give a new human hire versus what you give Claude — showing the same five elements in each case</h2>
+<div class="cmp">
+  <div class="cmp-header">
+    <div class="col-label">Element</div>
+    <div class="col-label">New hire on day one</div>
+    <div class="col-label">Claude</div>
+  </div>
+  <div class="cmp-body">
+    <div class="row">
+      <div class="cell concept">What they are</div>
+      <div class="cell human">A capable person who doesn't know your context yet</div>
+      <div class="cell ai">A capable model that doesn't know your context yet</div>
+    </div>
+    <div class="row">
+      <div class="cell concept">Role</div>
+      <div class="cell human">"You're a data analyst on the migration team"</div>
+      <div class="cell ai">Same sentence, in the system prompt</div>
+    </div>
+    <div class="row">
+      <div class="cell concept">Background materials</div>
+      <div class="cell human">The project brief, the field mapping doc, past examples</div>
+      <div class="cell ai">The same documents, pasted into context</div>
+    </div>
+    <div class="row">
+      <div class="cell concept">The task</div>
+      <div class="cell human">"Parse this error log and flag anything that blocks record creation"</div>
+      <div class="cell ai">Same sentence, as the user message</div>
+    </div>
+    <div class="row">
+      <div class="cell concept">Expected output</div>
+      <div class="cell human">"Give me a table: error type, affected records, suggested fix"</div>
+      <div class="cell ai">Same sentence, in the prompt</div>
+    </div>
+  </div>
+</div>
