@@ -95,7 +95,7 @@ body.panel-open .site-header { visibility: hidden; }
   transition: opacity var(--dur);
 }
 .wordmark img {
-  height: 100px;
+  height: 50px;
   width: auto;
   max-width: none;
   display: block;
@@ -1192,7 +1192,7 @@ body.reader-fullpage .reader-inner {
 
   .site-header { padding: 20px 0; }
 
-  .wordmark img { height: 85px; }
+  .wordmark img { height: 43px; }
 
   .container-narrow,
   .container-wide { padding: 0 4%; }
